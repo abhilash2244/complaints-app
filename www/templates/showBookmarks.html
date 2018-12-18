@@ -1,0 +1,32 @@
+
+  <ion-nav-bar class="bar bar-header bar-balanced" style="background-color: #256699;margin-top:306px;height: 40px;">
+     <ion-nav-title style="left: 75px;right: 75px;">
+         <span style="color: #FFFFFF;" >Bookmarks</span>
+     </ion-nav-title>
+     <ion-nav-buttons side = "left">
+           <img style="color: #FFFFFF; margin: auto;" src="img/back.png" class="header-back" ng-if="featuresCount == 1 && backButton == true" ng-click="closeShowBookmark()">
+    </ion-nav-buttons>
+     <ion-nav-buttons side = "right">
+     
+<!--         <ion-label style="float:right; padding-right:15px;padding-top: 10px;font-size:15px;" ng-click="showBookmark()">Create New</ion-label>
+ -->
+        <ion-label style="float:right; padding-right:15px;padding-top: 10px;font-size:15px;" ng-click="closeShowBookmark()">Close</ion-label>
+
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+    <ion-content class="modal-parent" style="margin-top:350px;width:100%;background-color: #FFFFFF;" >
+    <ion-scroll direction="y" style="height: 150px;">
+            <ion-list>
+            	<ion-item ng-repeat="(key,value) in showBookMarks track by $index">
+                    <ion-label style="float:left;width: 70%;"  ng-click="zoomToBookmark(value.bookmarkName)">{{value.bookmarkName}}</ion-label>
+                    <img src="img/delete.png" class="container-image" ng-click="deleteBookmark(value.bookmarkName)" style="float:right"/>
+                    <img src="img/Annotation.png" class="container-image" ng-click="editBookmark(value.bookmarkName)" style="float:right;margin-right:25px;"/>
+            </ion-list>
+            </ion-scroll>
+        <div style="text-align:center;">
+                <input type="submit" style="width:150px;" value="ADD BOOKMARK" ng-click="showBookmark()"/>
+        </div>
+    </div>
+	</ion-content>
+

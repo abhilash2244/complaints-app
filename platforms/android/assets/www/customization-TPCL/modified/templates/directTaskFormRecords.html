@@ -1,0 +1,191 @@
+<ion-header-bar class="bar-positive formdetails-header-bar" ng-init="getLocalStroedDirectTaskFormRecords()">
+	<div class="custom_header_back" ng-click="backToPrePoRecords();" ng-if="isHistoryShowingAtDirectTask == true">
+		<img src="img/back.png" class="header-back" >
+	</div>
+
+	<div class="custom_header_back" ng-click="backToTaskForms();" ng-if="isHistoryShowingAtDirectTask == false && !enableCheckbox">
+		<img src="img/back.png" class="header-back">
+	</div>
+	<div class="custom_header_back" ng-click="clearSelection();"  ng-if="enableCheckbox">
+		<img src="img/cancel.png" class="header-back">
+	</div>
+	<h1 class="title tabs-title-lable" id="Header_Title" >{{directTaskFormname}}</h1>
+
+	<div class="buttons actionbar_button_position" ng-if="isHistoryShowingAtDirectTask == false && isNetworkOn">
+	    
+	    <img src="img/ellipse.png"  class="heder_sync"  ng-click="projectOpenPopover();" ng-if="!enableCheckbox">
+
+      <button class = "button button-small" style="width: 60px;height: 10px;margin-right: 10px;" ng-click="syncAllRecordsOnline(syncRecIds);" ng-if="enableCheckbox" ng-show="header_sync_hide">Submit</button>
+
+<!-- 	    <img src="img/Savedoubletic.png" ng-if="enableCheckbox" ng-show="header_sync_hide" class="heder_sync" ng-click="syncAllRecordsOnline(syncRecIds);" > 
+ -->
+    </div>
+</ion-header-bar>
+
+<ion-view  style="background-color:#eee;" hide-nav-bar="true">
+	<ion-content style="top: 42px;">
+		<ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshOfflineRecords()"></ion-refresher>
+
+		<div class="row">
+	        <input class = "fontAwesome" id="searchId" type="search" ng-model="search" placeholder="&#61442; Search" clear-input="">
+
+	        <img src="img/Filter.png" class="selectOptions" ng-click="filterTaskRecord()" id="filter_Btn">
+	    </div>
+
+
+		<!-- pre-poprecords -->
+		<ion-list class="custom-content"  ng-if="!isHistoryShowingAtDirectTaskAtDirectTask  && prepopshowAtDirectTask"
+		>
+		   <ion-item  ng-if="directTaskOfflineRecordsList.indexOf(item._id) == -1  " ng-repeat="item in driectTaskPrepopRecords | filter:search" class="formscontainer shadow" ng-class="NotifiedDirectTaskRwcordId !== item._id ? 'formscontainer' : 'formscontainer1 custom-margin'" ng-click="gotoFormFilling(item,'prepop',$index)">
+		   
+		  	  	<img src="img/Task_record.png" class="container-image" ng-if="!item.IsReassign" ng-click="gotoFormFilling(item,'prepop',$index)"/>
+		  	  	<!-- {{item.record[index].Signature_1202725}} -->
+			  	<img src="img/Record_sync.png" class="container-image" ng-if="item.IsReassign"/>
+
+			    <span ng-repeat=" (id,eachValue) in directTaskDisplayValues" ng-click="gotoFormFilling(item,'prepop',$index)">
+			    	<!-- <p>{{item.record[eachValue.id]}}</p> -->
+			    	<div ng-repeat="(key,value) in eachValue" ng-if="!item.IsReassign">
+			    		<p ng-if="key.includes('Date_')">{{item.prepopulatedRecord[0][key] | date : "MM-dd-yyyy h:mm a"}}</p>
+			    		<p ng-if="!key.includes('Date_')">{{item.prepopulatedRecord[0][key]}}</p>
+			    	</div>
+			    	<div ng-repeat="(key,value) in eachValue" ng-if="item.IsReassign">
+			    		
+			    		<!-- commented by abhilash  -->
+<!-- 			    		<p ng-if="key.includes('Date_')">{{item.record[key] | date : "MM-dd-yyyy h:mm a"}}</p>{{item.record[0].Dropdown__name_1818644}}
+			    		{{item.record[0].Date_1823230 | date : "MM-dd-yyyy"}}
+			    		<p ng-if="!key.includes('Date_')">{{item.record[key]}}</p>
+ -->
+<!-- end of comment -->
+<!-- added b abhilash for date view -->
+			    		<div class="ion-desc">
+						<p>{{item.record[0].Dropdown__name_1818644}}</p>
+						<small>Date : {{item.record[0].Date_1823230 | date:'dd-MMM-yyyy'}} <!-- , A : {{item.createdBy}} --></small>
+					</div>
+<!-- end -->
+			    	</div>
+
+
+			    	
+
+			    </span>
+
+			
+			    <ion-option-button class="custom-button-info" ng-click="showReassignRecordInfo(item)" ng-if="item.IsReassign">
+							 <b class="slide-text-info">Info</b>
+				</ion-option-button>
+
+				<ion-option-button class="custom-button-navigate" ng-click="navigateToLocationFromPrepop(item._id,$event)" ng-if="isNetworkOn">
+			      <b class="slide-text-download">Navigate</b>
+			    </ion-option-button>
+
+		  	</ion-item>
+		</ion-list>
+
+		<!-- saved records -->
+		<ion-list class="custom-content" ng-if="!isHistoryShowingAtDirectTask && !isReassignShowingAtDirectTask">
+
+		   <ion-item ng-repeat="item in directTaskSavedRecordsWhileOnline | filter:search" class="formscontainer shadow" >
+		   	
+		   		<!-- <input type="checkbox"  ng-if=" syncRecIds.indexOf(item.unqueId) >-1 && enableCheckbox" class="custom-selectBox" ng-click="getUniqueIdsForSyn(item.unqueId)" > -->
+		   		<input type="checkbox" ng-if="enableCheckbox" class="custom-selectBox"
+				ng-checked="syncRecIds.indexOf(item.uniqueID) >-1" ng-click="getUniqueIdsForSyn(item.uniqueID,item)" />
+
+			  	<img src="img/Record_save.png" class="container-image" ng-click="gotoOpenSavedRecord(item,'saved',$index)"/>
+			  	
+			    <span ng-repeat=" (id,eachValue) in directTaskDisplayValues" ng-click="gotoOpenSavedRecord(item,'saved',$index)">
+			    	<!-- 
+		              Description: Date filer modified to show date and time
+		              Developer: Lokesh
+		              Date: 02/04/2018
+		            -->
+			    	<div ng-repeat="(key,value) in eachValue">
+			    		<p ng-if="key.includes('Date_')">{{item.record[key] | date : "MM-dd-yyyy h:mm a"}}</p>
+			    		<p ng-if="!key.includes('Date_')">{{item.record[key]}}</p>
+			    	</div>
+				</span>
+
+			    <ion-option-button class="custom-button-delete" ng-click="deleteRecord(item,$index)" >
+					 <b class="slide-text-download" >Delete</b>
+				</ion-option-button> 
+					
+				<ion-option-button class="custom-button-sync"  ng-click="sumitRecorddirectly(item,$index);" ng-if="isNetworkOn">
+				 	<b class="slide-text-download" >Submit</b>	
+				</ion-option-button> 
+				<ion-option-button class="custom-button-navigate" ng-click="navigateToLocationFromPrepop(item.recordId,$event)" ng-if="isNetworkOn">
+			      <b class="slide-text-download">Navigate</b>
+			    </ion-option-button>
+
+			</ion-item>
+		</ion-list>
+
+		<!-- histroy records -->
+		<ion-list class="custom-content"  ng-if="isHistoryShowingAtDirectTask == true && showSavedAtDirectTask">
+		   	<ion-item  ng-repeat="item in dThistoryRecords | filter:search" class="formscontainer shadow" ng-click="gotoFormFillingHistory(item,'prepop',$index)">
+		  		<img src="img/Form.png" class="container-image"/>
+			    <span ng-repeat=" (id,eachValue) in directTaskDisplayValues">
+			    	<div ng-repeat="(key,value) in eachValue">
+			    		<!-- commented by abhilash --> 
+			    		<!-- <p ng-if="key.includes('Date_')">{{item.record[key] | date : "MM-dd-yyyy h:mm a"}}</p> -->
+			    		<!-- end -->
+			    		<!-- <p ng-if="!key.includes('Date_')">{{item.record[key]}}</p> -->
+			    		<!-- customization by abhilash -->
+			    		<div class="ion-desc" style="margin-top: -9px;">
+						<p>{{item.record.Dropdown__name_1818644}}</p>
+						<small>Date : {{item.updatedTime | date:'dd-MMM-yyyy'}} <!-- , A : {{item.createdBy}} --></small>
+						
+					</div>
+			    	</div>
+			    </span>
+				<ion-option-button class="custom-button-sync" ng-click="email(item);">
+     				<b class="slide-text-download">Email</b> 
+   				</ion-option-button>
+		    </ion-item>
+		</ion-list>
+
+
+
+		<!-- <ion-list class="custom-content" ng-if="!isHistoryShowingAtDirectTask && !isReassignShowingAtDirectTask">
+		   <ion-item ng-repeat="item in savedRecordsWhileOnline | filter:search" class="formscontainer shadow" ng-click="gotoOpenSavedRecord(item,'saved',$index)">
+			  	<img src="img/Task_record.png" class="container-image"/>
+			    <span ng-repeat=" (id,eachValue) in displayValues">
+			    	<p ng-repeat="(key,value) in eachValue">{{item.record[key]}}</p>
+			    </span>
+
+			    <ion-option-button class="custom-button-delete" ng-click="deleteRecord(item,$index)" ng-hide="delete_hide">
+					 <b class="slide-text-download" >Delete</b>
+				</ion-option-button> 
+					
+				<ion-option-button class="custom-button-sync"  ng-click="sumitRecorddirectly(item,$index);" ng-hide="sync_hide" ng-if="isNetworkOn">
+				 	<b class="slide-text-download" >Submit</b>	
+				</ion-option-button> 
+			</ion-item>
+		</ion-list>
+ -->
+
+		<div ng-if="driectTaskPrepopRecords.length == 0 && directTaskSavedRecordsWhileOnline.length == 0 && !isHistoryShowingAtDirectTask && !isReassignShowingAtDirectTask">
+			<div  class="no-results" style="padding-top: 155px;" >
+			  <p class="custom-nohistory">			  	<h3 class="custom-historytext"> Tap on <b style="color:Red">+</b> to create a record</h3>
+			  </p>
+			</div>
+		</div>
+
+		<div ng-if="dThistoryRecords.length == 0">
+			<div  class="no-results" style="padding-top: 155px;" >
+			  <p class="custom-nohistory">No records yet! <br>
+			  </p>
+			</div>
+		</div>
+
+	</ion-content>
+
+	<div class="fixed-outside" >
+		<!-- original code -->
+        <!-- <img src="img/Fab.png" class="button button-clear add-record " ng-click="gotoEmptyForrmfilling()" ng-if="!isHistoryShowingAtDirectTask"> -->
+
+        <!-- customised code by abhilash -->
+        <img ng-if="usertype != 'GM'" src="img/Fab.png" class="button button-clear add-record " ng-click="gotoEmptyForrmfilling()" ng-if="!isHistoryShowingAtDirectTask">
+    </div>
+    <div class="centerOfScreen" ng-if="isNetworkOn == true && !isHistoryShowingAtDirectTask" data-tap-disabled="true">
+    	<!-- <img ng-click="openMenu(pullOverCheck)" class="pull-over" width="65px" ng-class="{'checked':pullOverCheck.value}" data-tap-disabled="true"> -->
+	</div>
+</ion-view> 

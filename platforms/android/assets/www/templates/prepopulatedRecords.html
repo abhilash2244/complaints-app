@@ -1,0 +1,37 @@
+<ion-header-bar class="bar-positive formdetails-header-bar">
+	<div class="custom_header_back" ng-click="backToTasks();"><img src="img/back.png" class="header-back" ></div>
+	<!-- <h3 class="header_formname">{{taskname}}</h3> -->
+	<h1 class="title tabs-title-lable" id="Header_Title"> {{taskname}}</h1>
+	<div class="task_header">
+		<!--<img src="img/Filter.png" class="heder_filter" ng-click="filterFormNames();" >
+		 <img src="img/ellipse.png" class="selectOptions_tasks" ng-click="openPopover();">  -->
+	</div>
+</ion-header-bar>
+	
+<ion-view  style="background-color:#eee;" hide-nav-bar="true">
+  
+				<ion-content direction="y" scrollbar-y="false">
+				
+				<ion-list class="custom-content">
+				
+				   <ion-item ng-repeat="item in prepopRecords" class="formscontainer shadow" ng-click="getPrePoprecord(item)">
+				  <img src="img/Form.png" class="container-image"/>
+					<p class="form-lable">{{item.recordName}}
+					<!-- <br>
+					<span class="custom-subText" ng-if="$index > 0">{{item.recordName}}</span> -->
+					</p>
+
+					<!-- <p class="form-lable">{{item[0].recordName}}</p>
+					<br><span ng-if="$index > 0">{{item.recordName}}</span> -->
+
+					<!-- <ion-option-button class="custom-button-view" ng-hide="hide_taskView" ng-click="getTaskFormDetails(item)">
+						<b class="slide-text-view">view</b> 
+					</ion-option-button> -->
+							
+				  </ion-item>
+				</ion-list>
+					<div ng-if="items !== undefined && !items.length" class="no-results">
+							  <p class="custom-noforms">No Formsz Available</p>
+							</div>
+					</ion-content>
+</ion-view>

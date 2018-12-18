@@ -1,0 +1,39 @@
+<ion-view>  
+    <ion-content style="background-color:#fff" class="box-shadow">
+        <div class="hero no-header flat">
+            <div class="content" style="top: 70px;">
+                <div class="app-icon"></div> 
+<!--                 <p style="margin-top: 10px;color: #7A9A01;font-weight: bold;font-size: 18px;">Dynamic Forms</p>
+ -->            </div>
+        </div>
+		<form method="" name="loginpage">
+            <div class="list custom-listset c-input">
+              <label class="item item-input">
+                <span class="step size-32 c-step">
+                    <img src="img/Loginuser.png" class="input_icon"> 
+                    <span class="side_dash"></span>
+                </span>
+                <input class="login_input" type="text" placeholder="Username" data-ng-model="user.username" style="margin-left: 25px; color:#595d65;">
+              </label>
+            </div>
+
+            <div class="list custom-listset c-input">
+              <label class="item item-input">
+                <span class="step size-32 c-step">
+                    <img src="img/LoginPassword.png" class="input_icon"> 
+                    <span class="side_dash"></span>
+                </span>
+                <input class="login_input" type="password" placeholder="Password" data-ng-model="user.password" style="margin-left: 25px;color:#595d65;">
+              </label>
+            </div>
+
+            <div class="loginbt-padding">
+    		    <input type="submit" value="SIGN IN" ng-click="login(user)"/>
+                 <!-- <input type="text" disabled> -->
+                <p style="float: right;" ng-click="forgotPassword()" class="frgtpwd"> Forgot Password ?</p>
+            </div>
+            <p style="text-align: center;font-size: 12px;margin-left: 100px;position: fixed;bottom: 0px !important;margin-bottom: 0px !important;">Powered By MagikMinds</p>
+        </form>
+    </ion-content>
+</ion-view>
+ 

@@ -1,0 +1,317 @@
+  <div ng-switch="field.data.type.view">
+    <!-- <div ng-if="prepopDataShow" ng-switch="parent.field.data.type.view"> -->
+    <div ng-if="field.data.type.view !== 'group' || field.data.type.view !== 'section'" class="skeleton-content" ng-class="{ 'Lastdiv' : $index + 1 == fields.length, 'FirstDiv' : $index ==0 }">
+<!-- [Video] -->
+<div ng-switch-when="video" >
+          <label class="item item-input item-stacked-label" style="font-weight: bold;">
+              <div class="input-label">{{ field.data.lable }}
+                  <span ng-show='{{field.required}}' class="mandatory">*</span>
+              </div>
+          </label> 
+          
+          <img src="img/Video.png" class="custom-camera" ng-click="getVideo(selectedFormRecordFields[field.data.id],field.data.id)"/>
+          <!-- <div class="row" ng-if="clicked"> -->           
+           <videogular vg-theme="config.theme" style="width: 320px;height: 240px;" ng-if="field.data.id==id && videoUrl != null">
+                  <vg-media vg-src="videoUrl" >
+                  </vg-media>
+                  <vg-controls>
+                      <vg-play-pause-button></vg-play-pause-button>
+                      <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
+                      <vg-scrub-bar>
+                          <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                      </vg-scrub-bar>
+                      <vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+                      <vg-volume>
+                          <vg-mute-button></vg-mute-button>
+                          <vg-volume-bar></vg-volume-bar>
+                      </vg-volume>
+                      <vg-fullscreen-button></vg-fullscreen-button>
+                  </vg-controls>
+       
+                  <vg-overlay-play></vg-overlay-play>
+                  <vg-poster vg-url='controller.config.plugins.poster'></vg-poster>
+              </videogular>
+           <!-- </div> -->
+</div>
+        <!--[CASE-1] TEXTBox-->
+        <div ng-switch-when="textbox">
+            <ion-item>
+                <label class="item item-input item-stacked-label content-text" style="font-weight: bold;">
+                   
+
+                    <div class="input-label">{{ field.data.lable }}
+                        <span ng-show='{{field.data.required}}' class="mandatory" style="color:red">*</span>
+                    </div>
+                    <input type="text" name="{{field.data.id}}" ng-required='{{field.data.required}}' id="{{field.data.id}}" ng-model="selectedFormRecordFields[field.data.id]" ng-readonly="true">
+
+            </ion-item>
+        </div>
+
+        <!--[CASE-2] TEXTAREA -->
+        <div ng-switch-when="textarea" showErrors>
+            <label class="item item-input item-stacked-label" style="font-weight: bold;">
+                <div class="input-label">{{ field.data.lable }}
+                    <span ng-show='{{field.data.required}}' class="mandatory" style="color:red">*</span>
+                </div>
+            </label>
+           
+
+            <ion-item style="padding-top: 0px !important;min-height:15px !important;">
+ 
+                 <textarea name="{{field.data.id}}" id= "{{field.data.id}}"  style="width: 101%;border-bottom: 1px solid;border-color: #ccc;"  ng-model="selectedFormRecordFields[field.data.id]" ng-required='{{field.data.required}}' ng-readonly="true" ></textarea>
+            
+            </ion-item>
+
+        </div>
+
+        <!-- [CASE-3] CHECKBOX -->
+    
+
+        <!-- <div ng-switch-when="checkbox" ng-disabled="true">
+                <label class="item item-input item-stacked-label" style="font-weight: bold;">
+                    <div class="input-label">{{ field.data.lable }}
+                        <span ng-show='{{field.data.required}}' class="mandatory" style="color:red">*</span>
+                    </div>
+                </label>
+
+             <ion-item  class="content-checkbox" >
+               <ion-list>
+                    <ion-item  ng-required='{{field.data.required}}'>
+                  
+                      <ion-checkbox  ng-repeat="item in field.data.type.values" name="{{field.data.id}}" ng-model="selectedFormRecordFields[field.data.id]"   ng-disabled="{{condition}}" >{{item.lable}}</ion-checkbox>
+                    </ion-item>
+              </ion-list>
+              
+            </ion-item> 
+
+        </div>  -->
+<div ng-switch-when="checkbox" class="form-field-margin">
+    <label class="item item-input item-stacked-label" style="font-weight: bold;">
+        <div class="input-label">{{ field.data.lable }}
+            <span ng-show='{{field.data.required}}' class="mandatory" style="color:red">*</span>
+        </div>
+    </label>
+
+    <ion-item  class="content-checkbox">
+      <ion-list>
+      <!-- form.formId as form.formName for form in catAllFormsList -->
+        <ion-item ng-repeat="item in field.data.type.values" ng-required='{{field.data.required}}'>
+        
+        <input id="{{field.data.id}}"
+               type="checkbox"
+               ng-model="isChecked[item.data.id]"
+               ng-checked="getCheck(item.value,selectedFormRecordFields[field.data.id])"
+               ng-disabled ="true" />
+        {{ item.lable }}
+
+        </ion-item>
+      </ion-list>
+    
+    </ion-item> 
+
+</div>
+
+        <!-- [CASE-4] RADIO BUTTON-->
+        
+        <div ng-switch-when="radio" style="margin-left: 23px; padding-bottom: 18px;" ng-class="{ 'Lastdiv' : $index + 1 == fields.length , 'FirstDiv' : $index ==0 }" >
+            <div>
+            <label class="item item-input item-stacked-label" style="margin-left: -23px;font-weight: bold;"><div class="input-label">{{ field.lable }}<span ng-show='{{field.data.required}}' class="mandatory" style="color:red">*</span></div>
+            </label></div>
+            <ion-list class="list" ng-disabled='true'>
+
+             <ion-radio name="{{field.data.id}}" ng-repeat="item in field.data.type.values" ng-value="item.value" style="right: 13px;width: 99%; border: 1px solid gainsboro;" ng-model="selectedFormRecordFields[field.data.id]" ng-disabled="true">{{ item.lable }}</ion-radio> 
+
+            </ion-list>
+        </div>
+        <!-- [CASE-5] SELECT-->
+       
+<!--         <div class="list" ng-switch-when="select" ng-class="{ 'Lastdiv' : $index + 1 == fields.length , 'FirstDiv' : $index ==0 }" >
+             <label class="item item-input item-select" style="margin-left: 6px;font-weight: bold;">
+                <div class="input-label  custom-divider" style="margin-left: -9px;padding-bottom: 25px;">
+                 {{ field.lable }}<span ng-show='{{field.data.required}}' class="mandatory" style="color:red">*</span>
+                </div>
+             
+                <select name="{{field.data.id}}" style="right: 24px;padding-bottom: 7px; padding-right: 2px;padding-top: 20px;"  id="{{field.data.id}}" ng-model="selectedFormRecordFields[field.data.id]" ng-readonly="true">
+              <option ng-repeat="option in field.data.type.values" ng-disabled='true'>{{option.lable}}</option>
+              <input type="text" disabled>
+              </select>
+             </label>
+ 
+        </div>  
+ -->
+<div class="list" ng-switch-when="select" ng-class="{ 'Lastdiv' : $index + 1 == fields.length , 'FirstDiv' : $index ==0 }" >
+             <label class="item item-input" style="margin-left: 6px;font-weight: bold;">
+                <div class="input-label " style="margin-left: -9px;padding-bottom: 25px;">
+                 {{ field.data.lable }}<span ng-show='{{field.data.required}}' class="mandatory" style="color:red">*</span>
+                </div>
+              </label>
+  <div  style="padding: 15px;">
+    <select
+            name="{{field.data.id}}"
+            ng-init="setDefinedValueForDropdown(field.data.defaultValue,field.data.type.values,selectedFormRecordFields[field.data.id],field.data.id,selectedFormRecordFields,isEmptyForm)"
+            ng-change="getDropDownInfo(selectedFormRecordFields[field.data.id],field.data.type.values,'drpdwn',field.data.id,false)"
+            style="right: 24px;padding-bottom: 7px; padding-right: 2px;padding-top: 20px; width: 100%"
+            id= "{{field.data.id}}"
+            
+            ng-model="selectedFormRecordFields[field.data.id]"
+            ng-required='{{field.data.required}}'
+            ng-options="option.value as option.lable for option in field.data.type.values" ng-disabled='true'>
+           
+        </select>
+  </div>
+</div>
+
+<!-- [CASE-6] CAMERA-->
+
+   
+<div ng-switch-when ="camera" ng-class="{ 'Lastdiv' : $index + 1 == fields.length , 'FirstDiv' : $index ==0 }" ng-hide="popover_hide"  >
+      <label class="item item-input item-stacked-label" style="font-weight: bold;">
+                    <div class="input-label">{{ field.data.lable }}
+                        <span ng-show='{{field.data.required}}' class="mandatory" style="color:red">*</span>
+                    </div>
+            
+     </label> 
+      <div>
+        <br/> 
+
+        <img name="{{field.data.id}}"  class="displayedImg" ng-src="{{imgeasSet[field.data.id]?imgeasSet[field.data.id]:selectedFormRecordFields[field.data.id]}}" ng-model="recordInfo[field.data.id]" id= "{{field.data.id}}" 
+        ng-disabled="true" >
+
+      </div>
+</div>
+
+        <!-- [CASE-7] CALENDER-->
+      
+
+         <div ng-switch-when="calender" ng-class="{ 'Lastdiv' : $index + 1 == fields.length, 'FirstDiv' : $index ==0}" >
+          <ion-item style="padding-top: 0px;">
+            <label class="item item-input item-stacked-label content-text" style="font-weight: bold;">
+              <div class="input-label">{{ field.data.lable }}<span ng-show='{{field.data.required}}' class="mandatory" style="color:red">*</span></div>
+            
+             <!-- <span ng-if="field.minDate =='' && field.maxDate ==''" > -->
+              <!-- 
+              Description: Date filer modified to show date and time
+              Developer: Lokesh
+              Date: 02/04/2018
+               -->
+             <input name="{{field.data.id}}"  type="text" ng-model="selectedFormRecordFields[field.data.id] | date:'MM-dd-yyyy HH:mm'" placeholder ='{{field.data.placeHolder}}' ng-required='{{field.data.required}}' id='{{field.data.id}}' ng-readonly="true"> 
+            <!-- </span> -->
+            
+            </label> 
+          </ion-item>
+  
+        </div>
+
+
+
+        <!-- [CASE-8] BARCODE-->
+       
+
+        <div ng-switch-when ="barcode" style="padding-top: 7px;padding-bottom: 10px;" ng-class="{ 'Lastdiv' : $index + 1 == fields.length , 'FirstDiv' : $index ==0 }" ng-disabled="{{condition}}"  >
+             <label class="item item-input item-stacked-label" style="font-weight: bold;padding-bottom: 0px; ">{{ field.data.lable }}<span ng-show='{{field.data.required}}' class="mandatory" style="color:red">*</span> </label> 
+            <!-- <img src="img/barcode.png" class="custom-barcode" ng-click="scanBarcode($index,field.id)"/>
+             -->
+            <input name="{{field.data.id}}" type="text" ng-model="selectedFormRecordFields[field.data.id]"  id="{{field.data.id}}" class="custom-barcode-text" ng-readonly="true" ng-readonly="true"> 
+        </div>
+
+
+        <!-- [CASE -9] Signature -->
+    
+
+ <div ng-switch-when="sign" ng-class="{ 'Lastdiv' : $index + 1 == fields.length, 'FirstDiv' : $index ==0}">
+  <label class="item item-input item-stacked-label" style="font-weight: bold;"><div class="input-label">{{ field.data.lable }}<span ng-show='{{field.data.required}}' class="mandatory" style="color:red">*</span></div></label> 
+ 
+ <img name="{{field.data.id}}" ng-if="sign[field.data.id] || selectedFormRecordFields[field.data.id]" ng-src="{{imgeasSet[field.data.id]?imgeasSet[field.data.id]:selectedFormRecordFields[field.data.id]}}" ng-model="recordInfo[field.data.id]"   style="margin-left:35%; width: 60%; height: 120px;" id="{{field.data.id}}" value="{{field.data.id}}"/>
+
+ </div> 
+
+
+
+ <!-- [CASE -10 ] RATING  -->
+
+<div ng-switch-when="rating" ng-class="{ 'Lastdiv' : $index + 1 == fields.length , 'FirstDiv' : $index ==0 }" >
+  <ion-item>
+  <label class="item item-input item-stacked-label content-text" style="font-weight: bold;">
+    <div class="input-label">{{ field.data.lable }}<span ng-show='{{field.data.required}}' class="mandatory" style="color:red">*</span></div>
+  
+  
+  <table name="{{field.id}}" style="width:100%">
+    <tr style="width:100%">
+      <td class="range-text">{{field.data.minLable}}</td><td style="width:90%;">
+        <ion-range-slider  ng-model="selectedFormRecordFields[field.data.id] " grid=true id="{{field.data.id}}" ng-readonly="true">
+          
+        </ion-range-slider>
+      </td>
+      <td class="range-text">{{field.data.maxLable}}</td>
+    </tr>
+  </table>  
+  {{selectedFormRecordFields[field.data.id]}}
+  <output id="recordInfo" ng-show="false"></output> 
+  
+  </ion-item>
+ 
+ </div> 
+
+
+ <div ng-switch-when="map" ng-class="{ 'Lastdiv' : $index + 1 == fields.length , 'FirstDiv' : $index ==0 }" ng-disabled="true">
+    <label class="item item-input item-stacked-label" style="font-weight: bold;padding-bottom: 0px; ">{{ field.data.lable }}
+                <span ng-show='{{field.data.required}}' class="mandatory" style="color:red">*</span>
+                </label>
+                <input name="{{field.id}}" type="text" ng-model='selectedFormRecordFields[field.data.id]'  id="{{field.data.id}}" class="custom-barcode-text" ng-disabled="true" style="padding-top: 0px">
+  </div>
+
+  <!--[CASE-3] Map interaction -->
+<div ng-switch-when="mapInteractionField"  class="form-field-margin">
+    <ion-item>
+        <label class="item item-input item-stacked-label content-text" id="ProjectTaskLable">
+            <div class="input-label"  style="width:48%">{{ field.lable }}
+                <span ng-show='{{field.required}}' class="mandatory">*</span>
+            </div>
+            <span class="input-label" style="width:48%;text-align:right;"><img src="img/Map_interaction.png" class="custom-map-interaction"/></span>
+            <input
+                style="width:100%"
+                type="text"
+                name="{{field.id}}"
+                id={{field.id}}
+                ng-model="selectedFormRecordFields[field.id]"
+                ng-disabled="true"/>
+                
+        </label>
+    </ion-item>
+</div>
+
+<!--[CASE-4] Goto -->
+<div ng-switch-when="goto" class="form-field-margin" style="padding-bottom: 10px;">
+  <label class="item item-input item-stacked-label" id="ProjectTaskLable">{{ field.lable }}
+    <span ng-show='{{field.required}}' class="mandatory" style="color:red">*</span>
+  </label>
+  <div style="width:100%">
+    <img src="img/Goto.png" class="custom-location"/>
+  </div>
+
+  <input style="width:100%"
+    name="{{field.id}}" 
+    type="text" 
+    ng-model='selectedFormRecordFields[field.id]' 
+    id={{field.id}} 
+    class="custom-goto" 
+    style="padding-top: 0px"
+    ng-disabled="true"/>
+</div>
+
+
+<div ng-switch-when="calculation" ng-class="{ 'Lastdiv' : $index + 1 == fields.length , 'FirstDiv' : $index ==0 }" ng-disabled="true" >
+    <label class="item item-input item-stacked-label" style="font-weight: bold;padding-bottom: 0px; ">{{ field.data.lable }}
+                    <span ng-show='{{field.data.required}}' class="mandatory" style="color:red">*</span>
+                </label>
+             
+                <input name="{{field.data.id}}" type="text" ng-model='selectedFormRecordFields[field.data.id]' ng-required='{{field.data.required}}' id= "{{field.data.id}}" class="custom-barcode-text" ng-disabled="true" style="padding-top: 0px">
+</div>
+
+
+
+
+        </div>      
+    </div>
+
+  

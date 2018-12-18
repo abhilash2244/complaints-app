@@ -1,0 +1,22 @@
+<ion-popover-view style="top: 40%;left: 40%;width: 275px;height: 150px;">
+
+  <ion-header-bar class="bar bar-header bar-balanced formdetails-header-bar bar bar-header disable-user-behavior has-tabs-top">
+    <h3 class="header_formname ng-binding" style="width:100%;">Edit Bookmark</h3>
+    <div class="custom_header_back" ng-click="closeEditBookmark();"><img src="img/cancel.png" class="header-back"></div>
+    
+  </ion-header-bar>
+
+    <ion-content>
+      <label class="item item-input">
+        <input type="text" ng-model="editBookmarkName" placeholder="edit bookmark">
+      </label>
+      <div style="text-align:center;">
+            <input type="submit" value="Update" ng-click="updateBookmark(editBookmarkName)" style="width:100px;height:40px;"/>
+      </div>
+         
+
+    </ion-content>
+    
+   </ion-popover-view>
+
+

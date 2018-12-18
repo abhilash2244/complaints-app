@@ -1,0 +1,37 @@
+
+  <ion-nav-bar class="bar bar-header bar-positive" style="background-color: #3a7dda;margin-top:256px;height: 40px;">
+     <ion-nav-title style="left: 75px;right: 75px;">
+         <span style="color: #FFFFFF;" >Sketchings</span>
+     </ion-nav-title>
+     <ion-nav-buttons side = "right">
+     
+    <ion-label style="float:right; padding-right:15px;padding-top: 10px;font-size:15px;" ng-click="closeModalOfSketchings()">Close</ion-label>
+
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+    <ion-content class="modal-parent" style="margin-top:300px;width:100%;background-color: #FFFFFF;" >
+        <div style="height:55%;overflow:scroll;">
+            <ion-scroll style="height:100%;">
+            <ion-list>
+                <ion-item ng-repeat="item in selectedFormRecordFields.sketching track by $index">
+                    <img src="img/Sketch.png" class="container-image"  style="float:left"/>
+                    <ion-label style="float:left;width: 70%;padding: 5px 0px 0px 15px;text-decoration: underline;color:blue;" ng-click="editSketching(item)">{{item.name}}</ion-label>
+                    <img src="img/delete.png" ng-hide="isHistoryShowing" class="container-image" ng-click="deleteSketching($index)" style="float:right"/>
+                </ion-item>
+            </ion-list>
+            <div ng-if="selectedFormRecordFields.sketching.length < 1 || selectedFormRecordFields.sketching == undefined" class="no-results">
+                              <p class="custom-noforms" style="text-align: center;">You have no Sketchings here</p>
+            </div>
+            </ion-scroll>
+            
+        </div>
+        <div style="text-align:center;" ng-hide="isHistoryShowing" class="custom-noforms">
+<!--You can create only one sketching
+             <input type="submit" value="ADD SKETCHING" style= "background-color:#719a3b" ng-disabled="recordInfo.sketching.length >= 1 || selectedFormRecordFields.sketching.length >= 1" ng-click="addSketching()"/>
+ -->
+             <input type="submit" value="ADD SKETCHING" style= "background-color:#719a3b"  ng-click="addSketching()"/>
+        </div>
+        
+    </ion-content>
+

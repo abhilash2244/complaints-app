@@ -1,0 +1,90 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "angular-long-press",
+        "scope": null,
+        "escapedName": "angular-long-press",
+        "name": "angular-long-press",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\FormsZ\\TATAPOWER\\Mobile Code to 17\\UEApp"
+    ]
+  ],
+  "_from": "angular-long-press@latest",
+  "_id": "angular-long-press@0.3.2",
+  "_inCache": true,
+  "_location": "/angular-long-press",
+  "_nodeVersion": "7.1.0",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/angular-long-press-0.3.2.tgz_1488099701864_0.9465480032376945"
+  },
+  "_npmUser": {
+    "name": "pmoelgaard",
+    "email": "npm@petermolgaard.com"
+  },
+  "_npmVersion": "3.10.9",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "angular-long-press",
+    "scope": null,
+    "escapedName": "angular-long-press",
+    "name": "angular-long-press",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-long-press/-/angular-long-press-0.3.2.tgz",
+  "_shasum": "e86eef1d01eb13470fb8ef534c71eefb4ead247d",
+  "_shrinkwrap": null,
+  "_spec": "angular-long-press",
+  "_where": "D:\\FormsZ\\TATAPOWER\\Mobile Code to 17\\UEApp",
+  "author": {
+    "name": "Puneeth Rai",
+    "email": "npuneethrai@yahoo.co.in"
+  },
+  "bugs": {
+    "url": "https://github.com/puneethrai/angular-long-press/issues"
+  },
+  "dependencies": {},
+  "description": "An angular.js long press directive for both desktop and mobile",
+  "devDependencies": {},
+  "directories": {
+    "example": "examples"
+  },
+  "dist": {
+    "shasum": "e86eef1d01eb13470fb8ef534c71eefb4ead247d",
+    "tarball": "https://registry.npmjs.org/angular-long-press/-/angular-long-press-0.3.2.tgz"
+  },
+  "gitHead": "753b7d9f41b88d76a9cb32368354dae2840db4ca",
+  "homepage": "https://github.com/puneethrai/angular-long-press#readme",
+  "keywords": [
+    "angular",
+    "long-press",
+    "touch"
+  ],
+  "license": "MIT",
+  "main": "angular-long-press.js",
+  "maintainers": [
+    {
+      "name": "pmoelgaard",
+      "email": "npm@petermolgaard.com"
+    }
+  ],
+  "name": "angular-long-press",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/puneethrai/angular-long-press.git"
+  },
+  "scripts": {},
+  "version": "0.3.2"
+}

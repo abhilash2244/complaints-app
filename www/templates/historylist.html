@@ -1,0 +1,110 @@
+
+	<ion-header-bar class="bar-positive formdetails-header-bar" ng-init="getOfflineForms()">
+	<div class="custom_header_back" ng-click="back();" ng-show="forms_action_header"><img src="img/back.png" class="header-back" ></div>
+	<div class="custom_header_cancel" ng-click="clearSelection();"  ng-hide="forms_action_header"><img src="img/cancel.png" class="header-cancel" ></div>
+	<!-- {{noSelectedItems}} -->
+	<!-- <h3 class="header_formname">{{formname}}</h3> -->
+	<h1 class="title tabs-title-lable" id="Header_Title"> {{formname}}</h1>
+	<!-- Filter actions -->
+	<div  ng-show="forms_action_header">
+	    <div style='width:100%'>
+			<img src="img/Filter.png" ng-hide="hide_ellipse" class="selectOptions"  ng-click="modal.show()" style="left: 290px;">
+		</div>
+	    <div style='width:100%'>
+			<img src="img/ellipse.png" ng-hide="hide_ellipse" class="selectOptions" ng-click="openPopover();" >
+		 </div>
+	</div>
+
+	<div style="margin-left: 10%;margin-top: 5px;" ng-hide="forms_action_header">
+		<img src="img/header_delete.png" class="header_delete" ng-hide="header_delete" ng-click="deleteAllRecord(selection);" ng-disabled="DeleteDisable"> 
+		<img src="img/Submit.png" class="heder_sync" ng-hide="heder_sync" ng-click="syncAllOfflineForm(selection);" >
+	</div>
+	</ion-header-bar>
+
+	
+<ion-view  style="background-color:#eee;" hide-nav-bar="true">
+  
+	<ion-content direction="y" scrollbar-y="false">
+	<ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()"></ion-refresher>
+		<!-- <select ng-model="statusType">
+			<option value="All" selected='selected'>All</option>
+			<option value="Saved">Saved</option>
+		    <option value="Reassigned">Reassigned</option>
+		    <option value="New">New</option>
+		</select>
+		<hr> -->
+		 <script id="my-modal.html" type="text/ng-template">
+		  <ion-modal-view style="top:45%;padding-right:15px;padding-left:15px;">
+		    <ion-header-bar style="background-color: #307FE2;">
+    			<button class="button button-clear button-small pull-right" ng-click="applyFilter()">Done</button>
+        		<button class="button button-clear button-small pull-left" ng-click="closeModal()">Clear</button>
+      			<h1 class="title" style="left: 145px;position: absolute;float: left;">Filters</h1>
+    		</ion-header-bar>
+		    <ion-content style="margin-left:15px;margin-right:15px;">
+      		<p>Filter by:</p>
+      	<!-- {{choice}} -->
+      		<!-- <div></div>
+      		<ion-radio class="button button-small" ng-model="choice" value="All" >All</ion-radio>
+        	<ion-radio class="button button-small" ng-model="choice" value="Saved" >Saved</ion-radio>
+        	<ion-radio class="button button-small" ng-model="choice" value="Reassigned" >Reassigned</ion-radio> -->
+
+        	<!-- <input type="radio" class="button button-small" ng-model="statusType" value="All">All</input>
+        	<input type="radio" class="button button-small" ng-model="statusType" value="Saved">Saved</input>
+        	<input type="radio" class="button button-small" ng-model="statusType" value="Reassigned">Reassigned</input> -->
+        	<!-- {{statusType}} -->
+
+	        <!-- <ion-list>
+	        	<ion-radio class="button button-small" ng-model="statusType" value="All" >All</ion-radio>
+	        	<ion-radio class="button button-small" ng-model="statusType" value="Saved" >Saved</ion-radio>
+	        	<ion-radio class="button button-small" ng-model="statusType" value="Reassigned" >Reassigned</ion-radio>
+	    	</ion-list> -->
+   
+   			<!-- <button class="button button-small button-dark" ng-click="applyFilter(statusType)">
+   			Apply</button> -->
+      	<div class="list" style="margin-left:15px;margin-right:15px;">
+   				<button class="button button-small" ng-click="GetSelectedType('All')">All
+   				</button>
+   				<button class="button button-small" style="margin-left:10px;margin-right:10px;" ng-click="GetSelectedType('Saved')">Saved</button>
+   				<button class="button button-small" ng-click="GetSelectedType('Reassigned')">Reassigned</button>
+   			</div>
+   		<hr>
+   		<p>Sort by:</p>
+   		<div class="list" style="margin-left:15px;margin-right:15px;">
+   			<button class="button button-small">Date
+   			</button>
+   			<button class="button button-small">Alphabetical</button>
+   		</ion-content>
+	</ion-modal-view>
+	</script>
+	<ion-list class="custom-content" can-swipe="!selectCheckBox">
+			<ion-item ng-repeat="item in offlineitems | recFilter : statusType | orderBy : item.recordId" class="formscontainer shadow" ng-click="editOfflineForm(item)">
+			
+				<input type="checkbox" ng-if="selectCheckBox" class="custom-selectBox"
+					ng-checked="selection.indexOf(item.recordId) > -1" ng-model="selection.indexOf(item.recordId) > -1"  ng-click="toggleSelection(item.recordId);$event.stopPropagation();"/>
+				
+				<img src="img/Form_recordbkp.png" class="container-image" />
+				<p class="form-lable">{{item.recordId}}</p>
+					
+				<ion-option-button class="custom-button-delete" ng-click="deleteAllRecord(item)" ng-hide="delete_hide">
+				 <b class="slide-text-download">Delete</b>
+				 </ion-option-button> 
+							 
+				<ion-option-button class="custom-button-sync"  ng-click="syncOfflineForm(item);" ng-hide="sync_hide">
+					 <b class="slide-text-download">Submit</b>	
+				 </ion-option-button>
+
+				<!-- <ion-option-button class="custom-button-sync"  ng-click="downloadPDF(item);" ng-hide="sync_hide">
+					 <b class="slide-text-download">Download</b>	
+				</ion-option-button>   -->
+			</ion-item> 
+	</ion-list>
+		
+		<div ng-if="offlineitems !== undefined && !offlineitems.length" class="no-results" style="padding-top: 155px;">
+		    <p class="custom-nohistory">No records yet! <br>
+		      	<h3 class="custom-historytext"> Tap on <b style="color:#7A9A01">+</b> to create a record</h3></p>
+		</div>
+	</ion-content>
+	<div class="fixed-outside">
+        <img src="img/Fab.png" class="button button-clear add-record " ng-click="getFormDetails(item)">
+    </div>
+</ion-view> 

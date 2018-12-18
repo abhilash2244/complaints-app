@@ -1,0 +1,29 @@
+<ion-view>  
+  <ion-content style="background-color:#fff" class="box-shadow">
+
+  <form ng-submit="emailRecords(emailData,info,detailsForm.$valid)" name="detailsForm" novalidate style="width: 100% !important;">
+    <ion-item>
+      <label class="item item-input item-stacked-label content-text" style="font-weight: bold;">
+        <div class="input-label">To Address 
+          <span class="mandatory" style="color:red">*</span>
+        </div>
+        <input type="text" name="" ng-required='true' ng-model="info.toAddress" style="background-color: #efefef;"/>
+      </label>
+
+      <label class="item item-input item-stacked-label content-text" style="font-weight: bold;">
+        <div class="input-label">Message 
+          <span class="mandatory" style="color:red">*</span>
+        </div>
+        <textarea rows="4" name="" ng-required='true' ng-model="info.body" 
+        style="background-color: #efefef;color: black;"></textarea>
+      </label>
+
+      <div style="float:right;margin-right:10px;">
+        <input type="submit" value="Email" style="width:75px;height:30px;"/>
+      </div>
+
+    <ion-item>
+  </form>
+
+  </ion-content>
+</ion-view>

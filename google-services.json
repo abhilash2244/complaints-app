@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "991804489589",
+    "firebase_url": "https://tpcldformsz.firebaseio.com",
+    "project_id": "tpcldformsz",
+    "storage_bucket": "tpcldformsz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991804489589:android:d9d37c37aba359b0",
+        "android_client_info": {
+          "package_name": "com.mm.formsz.tpcl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991804489589-g1vs9mfrumvmrfcur6jp079mut6vifh2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD604-lNjQIBmINsOXwgZCwlLVOm40aHfA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

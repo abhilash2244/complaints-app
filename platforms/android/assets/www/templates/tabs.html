@@ -1,0 +1,35 @@
+<!-- <div class="bar bar-footer"> -->
+<ion-tabs class="tabs-icon-top tabs-positive custom-tabs background-red" ng-class="{'tabs-item-hide': hideTabs}">
+
+
+    <!-- <ion-tab icon-on="ion-Dashboard-after" icon-off="ion-Dashboard-before" href="#/tab/dashboard" ng-if="dashboardTab">
+          <ion-nav-view name="dashboard-tab"></ion-nav-view>
+        </ion-tab>  -->
+
+    <ion-tab title="Tasks" icon-on="ion-task-after" icon-off="ion-task-before" href="#/sidemenu/tab/formTasks/assignedFormTasks" 
+    ng-if="taskTab" >
+        <ion-nav-view name="forms-task-tab"></ion-nav-view>
+    </ion-tab>
+
+<!--     <ion-tab title="Forms" icon-on="ion-forms-before" icon-off="ion-forms-after" href="#/tab/forms" ng-if="formsTab">
+        <ion-nav-view name="forms-tab"></ion-nav-view>
+    </ion-tab>
+ -->
+     <ion-tab title="Project Tasks" icon-on="ion-project-tasks-before" icon-off="ion-project-tasks-after" href="#/sidemenu/tab/ProjectTasks/assignedProjectTasks" ng-if="projectTask">
+        <ion-nav-view ></ion-nav-view>
+    </ion-tab>
+
+    <!-- <ion-tab title="Ressaign" icon-on="ion-reassign-after" icon-off="ion-reassign-before" href="#/tab/reasign" ng-if="reassignTab">
+        <ion-nav-view name="reasign-tab"></ion-nav-view>
+    </ion-tab> -->
+
+       <ion-tab title="Notifications" icon-on="ion-notification-after" icon-off="ion-notification-before" href="#/sidemenu/tab/notifications" ng-if="notificationTab">
+    <ion-nav-view name="notification-tab"></ion-nav-view>
+  </ion-tab>
+
+    <ion-tab title="Settings" icon-on="ion-settings-after" icon-off="ion-settings-before" href="#/sidemenu/tab/settings" ng-if="settingsTab">
+        <ion-nav-view name="settings-tab"></ion-nav-view>
+    </ion-tab>
+
+</ion-tabs>
+<!-- </div> -->

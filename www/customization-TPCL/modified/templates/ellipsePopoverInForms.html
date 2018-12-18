@@ -1,0 +1,10 @@
+<ion-popover-view class="fit history-popover">
+    <ion-content  scroll="false">
+    <div class="list">
+    <div  ng-click="workInstructions()" ng-hide="work_instruction_hide" class="item div_focus"> Instructions</div>
+    
+    <div ng-click="references()" ng-if="isNetworkOn" ng-hide="references_hide" class="item div_focus">References</div>
+
+  </div>
+    </ion-content>
+</ion-popover-view>

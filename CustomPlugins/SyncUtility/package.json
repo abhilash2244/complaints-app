@@ -1,0 +1,21 @@
+{
+  
+
+  "_id": "SyncUtility@1.0.0",
+  "cordova": {
+    "id": "SyncUtility",
+    "platforms": [
+      "android"
+    ]
+  },
+  "dependencies": {},
+  "description": "Cordova Sync utility Plugin",
+  "devDependencies": {},
+ 
+  "license": "MIT",
+  "name": "SyncUtility",
+  "optionalDependencies": {},
+  "readmeFilename": "README.md",
+
+  "version": "1.0.0"
+}

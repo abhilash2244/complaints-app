@@ -1,0 +1,22 @@
+<ion-popover-view style="top: 40%;left: 40%;width: 75%;height: 160px; ">
+
+  <ion-header-bar class="bar bar-header bar-balanced formdetails-header-bar bar bar-header disable-user-behavior has-tabs-top">
+    <h3 class="header_formname ng-binding" style="width:100%;font-size:15px;margin-top: 10px;">Buffer Length</h3>
+  </ion-header-bar>
+
+    <ion-content>
+      <label class="item item-input">
+        <input type="text" style="background-color: #efefef;padding-left: 10px;border-radius: 10px;margin-right: 5px;" ng-model="bufferDistance" placeholder="Enter length in meters" numbers-only max="1000" limit-to-max>Meters
+      </label>
+      <span style="color:red;font-size:10px;margin-left:20px;">Note:Max length is 1000 meters</span>
+      <div style="float:right;margin-right:10px;">
+            <input type="submit" value="CANCEL" ng-click="cancelBufferLength(bufferDistance)" style="width:75px;height:30px;background-color:#dfe0db !important;color:#8a8686 !important"/>
+            <input type="submit" value="OK" ng-click="bufferDistance > 1000 ? okBufferLength(1000) : okBufferLength(bufferDistance)" style="width:75px;height:30px;"/>
+      </div>
+         
+
+    </ion-content>
+    
+   </ion-popover-view>
+
+

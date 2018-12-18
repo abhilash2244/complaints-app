@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Complaints App</string>
+    <string name="launcher_name">@string/app_name</string>
+    <string name="activity_name">@string/launcher_name</string>
+    <string name="sync_in_progress">Sync is already in Progress</string>
+    <string name="sync_completed">Sync Process Finished.Successfully Synced records %1$d ,Failed records %2$d</string>
+    <string name="mandatoryFields">Unable to sync few records as mandatory fields are not filled</string>
+</resources>

@@ -1,0 +1,64 @@
+<ion-header-bar class="bar-positive formdetails-header-bar" ng-init="methodCheck()">
+    <h1 class="title tabs-title-lable" style="width:70px;" ng-show="sync_header_option"> Tasks</h1>
+    <div class="title tabs-title-lable">
+	    <h5 class="title tabs-title-lable" id="header_Maintitle"> Dynamic Forms</h5>
+	    <h5 class="title tabs-title-lable" id="header_Subtitle"> GIS - TATAPOWER</h5>
+    </div>
+	<span class="taskClear" ng-if="status" ng-hide="sync_header_option" ng-click="clearSelection();">Clear</span>
+	
+	
+  	<div class="taskSync">
+        <img src="img/sync.png" class="switchtolist" ng-click="checkRecord()" ng-show="sync_header_option" ng-if="(status && syncIcon.length!==0)">
+    </div>
+
+    <p class="taskDone" ng-click="syncAllTasksOnline(selection)" ng-if="(selection.length!==0)" ng-hide="sync_header_option">
+     <small>Sync</small>
+    </p>
+</ion-header-bar>
+
+<ion-view style="background-color:#eee;top: -50px;" hide-nav-bar="true">
+	<ion-content direction="y" scrollbar-y="false">
+		
+		<ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()"></ion-refresher>
+
+		<div class="row">
+	        <input class = "fontAwesome" id="searchId" type="search" ng-model="search.TaskName" placeholder="&#61442; Search" clear-input="">
+
+	        <img src="img/Filter.png" ng-hide="hide_ellipse" class="selectOptions"  ng-click="filterByAssignee()" id="filter_Btn">
+	    </div>
+
+		<ion-list class="custom-content">	
+			<ion-item ng-repeat="item in filtereditems = (tasks | filter:search | orderBy:propertyName:reverse)" class="shadow" ng-click="getAssignedForms(item);" ng-class="item.notifyStatus ? 'formscontainer' : 'formscontainer1 custom-margin'">
+
+				<input type="checkbox" ng-if="selectCheckBox" class="custom-selectBox"
+				ng-checked="selection.indexOf(item.taskId)> -1" ng-click="toggleSelection(item.taskId,item)" ng-disabled="!(item.status==1)">
+
+				<div>
+					<div class="ion-image"> 
+						<img src="img/Tasks.png" class="container-image" ng-show="item.status==0"/>
+						<img src="img/Downloaded_Task.png" class="container-image" ng-show="item.status==2"/>
+						<img src="img/Task_download-sync.png" class="container-image" ng-show="item.status==1"/>
+					</div>
+					<div class="ion-desc">
+						<p>{{item.TaskName}}</p>
+						<small>E.D : {{item.endDate | date:'dd-MMM-yyyy'}} , A : {{item.createdBy}}</small>
+					</div>
+				</div>		
+
+				<ion-option-button class="custom-button-download" ng-click="downloadTask(item)" ng-show="status">
+					 <b class="slide-text-info">Download</b>
+				</ion-option-button>
+				<ion-option-button class="custom-button-info" ng-click="taskDetails(item)">
+					<b class="slide-text-info">Info</b>
+				</ion-option-button>
+
+				  </ion-item>
+				</ion-list>
+					<div ng-if="filtereditems !== undefined && !filtereditems.length" class="no-results">
+							 <center class="custom-noforms">No Project Tasks Available</center>
+							</div>
+					</ion-content>
+	<div class="centerOfScreen" ng-if="isNetworkOn == true" data-tap-disabled="true">
+    	<!-- <img ng-click="openMenu(pullOverCheck)" class="pull-over" width="65px" ng-class="{'checked':pullOverCheck.value}" data-tap-disabled="true"> -->
+	</div>
+</ion-view>

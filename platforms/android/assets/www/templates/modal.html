@@ -1,0 +1,25 @@
+
+  <ion-nav-bar class="bar bar-header bar-balanced" style="margin-top:0px;height: 5%;">
+     <ion-nav-title style="left: 75px;right: 75px;">
+         <span style="color: #FFFFFF;" class="ion-1x" ng-if="featuresCount > 1 ">{{itemsList.length}} Features Found</span>
+         <span style="color: #FFFFFF;" class="ion-1x" ng-if="featuresCount == 1" title="{{itemsList.myw_external_name}} : {{itemsList.id}}">{{itemsList.myw_external_name}} : {{itemsList.id}}</span>
+     </ion-nav-title>
+     <ion-nav-buttons side = "left">
+           <img style="color: #FFFFFF; margin: auto;" src="img/back.png" class="header-back" ng-if="featuresCount == 1 && backButton == true" ng-click="goBack()">
+     </ion-nav-buttons>
+     <ion-nav-buttons side = "right">
+           <span style="color: #FFFFFF; margin: auto; margin-right:10px;font-size:17px;" ng-click="copySelectedField()"  ng-if="featuresCount == 1 && enableCopyForMapInteraction">Copy</span>
+           <span style="color: #FFFFFF; margin: auto; margin-right:10px;font-size:17px;" ng-click="done()">Close</span>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+    <ion-content class="modal-parent" style="margin-top:10%;width:100%;height: 50%;background-color: #FFFFFF;" >
+        <ion-list radio-group formControlName="langs" ng-if="featuresCount > 1">
+          <ion-item ng-repeat="item in itemsList track by $index"  style="padding:5px;">
+            <a class="item" ng-click="showFeaturedetails(item.id, item.properties.myw_object_type,true)" target="_blank">{{item.properties.myw_title}}</a>
+          </ion-item>
+        </ion-list>
+
+      <ion-list radio-group formControlName="langs"  ng-if="featuresCount == 1">
+            <ion-radio ng-repeat="(key,val) in itemsList.properties track by $index" style="padding:5px;" checked="true" ng-value="val" ng-model="selectedData.data">{{key}} - {{val}}</ion-radio>
+      </ion-list>
+</ion-content>

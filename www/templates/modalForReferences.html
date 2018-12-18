@@ -1,0 +1,27 @@
+  <ion-nav-bar class="bar bar-header bar-positive" style="background-color: #3a7dda;margin-top:356px;height: 40px;">
+     <ion-nav-title style="left: 75px;right: 75px;">
+         <span style="color: #FFFFFF;" >References</span>
+     </ion-nav-title>
+     <ion-nav-buttons side = "right">
+     
+    <ion-label style="float:right; padding-right:15px;padding-top: 10px;font-size:15px;" ng-click="closeModalOfReferences()">Close</ion-label>
+
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+    <ion-content class="modal-parent" style="margin-top:400px;width:100%;background-color: #FFFFFF;" >
+        <ion-list ng-if="reference != undefined">
+            <ion-item class="animate-repeat" ng-repeat="data in reference">
+                  <a class="aboutus_link" ng-click="goToReferences(data);">{{data}}</a>
+              </ion-item>
+      </ion-list>
+      <ion-list ng-if="reference == undefined">
+            <ion-item class="animate-repeat">
+                  <div class="item item-text-wrap" >No References available</div>
+              </ion-item>
+      </ion-list>
+    </ion-content>
+
+
+
+

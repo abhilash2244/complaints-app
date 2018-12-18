@@ -1,0 +1,30 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <button class="button button-icon ion-checkmark" ng-click="closeModal();"></button>
+    <h1 class="title" style="right: 0 !important;" ng-if="searchSelect.enableSearch">
+      <label class="item item-icon-left" style="height: 85%;top: 5px;padding: 0px 0px 0px 10px !important;">
+        <input type="text" placeholder="{{searchSelect.title}}" ng-model="searchSelect.searchvalue" style="width: 90%;height: 100%;margin-top: 1px;" />
+      </label>
+      <i ng-if="searchSelect.searchvalue.length > 0" on-tap="clearSearch()" class="icon ion-close" style="top:-5px;right: 10px;position:absolute;cursor:pointer;z-index: 2;"></i>
+    </h1>
+    <h1 class="title" ng-if="!searchSelect.enableSearch">{{ searchSelect.title }}</h1>
+  </ion-header-bar>
+<ion-content style="position: relative !important">
+    <div class="list">
+      <table>
+        <tbody> 
+          <tr ng-repeat="option in options| filter: searchSelect.searchvalue">
+              <td style="padding-top: 10px;"><input  type="checkbox" ng-model="option.selected" /></td>
+              <td style="vertical-align: middle;padding-top: 10px;">{{ option[searchSelect.valueProperty] }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- <div ng-repeat="option in options | filter: searchSelect.searchvalue">
+          <label>
+              <input  type="checkbox" ng-model="option.selected" />
+              {{ option[searchSelect.valueProperty] }}
+          </label>
+      </div> -->
+    </div>
+</ion-content>
+</ion-modal-view>

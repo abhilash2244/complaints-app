@@ -1,0 +1,101 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "https://github.com/Telerik-Verified-Plugins/NativePageTransitions#0.6.5",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "https://github.com/Telerik-Verified-Plugins/NativePageTransitions#0.6.5",
+        "spec": "git+https://github.com/Telerik-Verified-Plugins/NativePageTransitions.git#0.6.5",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:Telerik-Verified-Plugins/NativePageTransitions.git#0.6.5",
+          "sshUrl": "git+ssh://git@github.com/Telerik-Verified-Plugins/NativePageTransitions.git#0.6.5",
+          "httpsUrl": "git+https://github.com/Telerik-Verified-Plugins/NativePageTransitions.git#0.6.5",
+          "gitUrl": "git://github.com/Telerik-Verified-Plugins/NativePageTransitions.git#0.6.5",
+          "shortcut": "github:Telerik-Verified-Plugins/NativePageTransitions#0.6.5",
+          "directUrl": "https://raw.githubusercontent.com/Telerik-Verified-Plugins/NativePageTransitions/0.6.5/package.json"
+        }
+      },
+      "D:\\FormsZ\\TATAPOWER\\Mobile Code to 17\\UEApp\\node_modules"
+    ]
+  ],
+  "_from": "git+https://github.com/Telerik-Verified-Plugins/NativePageTransitions.git#0.6.5",
+  "_id": "com.telerik.plugins.nativepagetransitions@0.6.5",
+  "_inCache": true,
+  "_location": "/com.telerik.plugins.nativepagetransitions",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "https://github.com/Telerik-Verified-Plugins/NativePageTransitions#0.6.5",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "https://github.com/Telerik-Verified-Plugins/NativePageTransitions#0.6.5",
+    "spec": "git+https://github.com/Telerik-Verified-Plugins/NativePageTransitions.git#0.6.5",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:Telerik-Verified-Plugins/NativePageTransitions.git#0.6.5",
+      "sshUrl": "git+ssh://git@github.com/Telerik-Verified-Plugins/NativePageTransitions.git#0.6.5",
+      "httpsUrl": "git+https://github.com/Telerik-Verified-Plugins/NativePageTransitions.git#0.6.5",
+      "gitUrl": "git://github.com/Telerik-Verified-Plugins/NativePageTransitions.git#0.6.5",
+      "shortcut": "github:Telerik-Verified-Plugins/NativePageTransitions#0.6.5",
+      "directUrl": "https://raw.githubusercontent.com/Telerik-Verified-Plugins/NativePageTransitions/0.6.5/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/Telerik-Verified-Plugins/NativePageTransitions.git#8661cf2570e76d5950479bd020af944571d04945",
+  "_shasum": "cad9d4464864fe10b24fcaefa14e8d1ba34c046e",
+  "_shrinkwrap": null,
+  "_spec": "https://github.com/Telerik-Verified-Plugins/NativePageTransitions#0.6.5",
+  "_where": "D:\\FormsZ\\TATAPOWER\\Mobile Code to 17\\UEApp\\node_modules",
+  "author": {
+    "name": "Telerik / Eddy Verbruggen",
+    "email": "eddyverbruggen@gmail.com",
+    "url": "https://github.com/EddyVerbruggen"
+  },
+  "cordova_name": "Native Page Transitions",
+  "dependencies": {},
+  "description": "Slide out the current page to reveal the next one. By a native transitions.",
+  "devDependencies": {},
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "gitHead": "8661cf2570e76d5950479bd020af944571d04945",
+  "issue": "https://github.com/Telerik-Verified-Plugins/WKWebView/issues",
+  "keywords": [
+    "Native transitions",
+    "Native page transitions",
+    "Slide",
+    "Flip",
+    "Drawer",
+    "Menu",
+    "Curl",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-wp8",
+    "cordova-windows"
+  ],
+  "license": "MIT",
+  "name": "com.telerik.plugins.nativepagetransitions",
+  "optionalDependencies": {},
+  "platforms": [
+    "ios",
+    "android",
+    "wp8",
+    "windows"
+  ],
+  "readme": "## Native Page Transitions Cordova / PhoneGap Plugin\r\nby [Telerik](http://www.telerik.com)\r\n\r\n\r\n<table width=\"100%\">\r\n    <tr>\r\n        <td width=\"100\"><a href=\"http://plugins.telerik.com/plugin/native-page-transitions\"><img src=\"http://www.x-services.nl/github-images/telerik-verified-plugins-marketplace.png\" width=\"97px\" height=\"71px\" alt=\"Marketplace logo\"/></a></td>\r\n        <td>For a quick demo app and easy code samples, check out the plugin page at the Verified Plugins Marketplace: http://plugins.telerik.com/plugin/native-page-transitions</td>\r\n    </tr>\r\n</table>\r\n\r\n\r\nUsing the Cordova CLI?\r\n\r\n```\r\ncordova plugin add com.telerik.plugins.nativepagetransitions\r\n```\r\n\r\nUsing PGB?\r\n\r\n```xml\r\n<plugin name=\"com.telerik.plugins.nativepagetransitions\" source=\"npm\" />\r\n```\r\n\r\n[The MIT License (MIT)](http://www.opensource.org/licenses/mit-license.html)\r\n",
+  "readmeFilename": "README.md",
+  "repo": "https://github.com/Telerik-Verified-Plugins/WKWebView.git",
+  "version": "0.6.5"
+}

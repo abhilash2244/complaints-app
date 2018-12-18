@@ -1,0 +1,35 @@
+<ion-popover-view style="top: 20%;left: 35%;width: 90%;height: 60%; ">
+	<ion-header-bar class="bar-positive formdetails-header-bar bar bar-header disable-user-behavior has-tabs-top">
+		<div class="custom_header_back" ng-click="closeBtn();"><img src="img/back.png" class="header-back"></div>
+		<h3 class="header_formname ng-binding" style="width:100%;">Email</h3>
+	</ion-header-bar>
+  <ion-content>
+    <div class="row">
+      <form ng-submit="emailRecords(emailData,info,detailsForm.$valid)" name="detailsForm" novalidate style="width: 100% !important;">
+        <ion-item>
+          <label class="item item-input item-stacked-label content-text" style="font-weight: bold;">
+            <div class="input-label">To Address 
+              <span class="mandatory" style="color:red">*</span>
+            </div>
+            <input type="text" name="" ng-required='true' ng-model="info.toAddress" style="background-color: #efefef;"/>
+          </label>
+
+          <label class="item item-input item-stacked-label content-text" style="font-weight: bold;">
+            <div class="input-label">Message 
+              <span class="mandatory" style="color:red">*</span>
+            </div>
+            <textarea rows="4" name="" ng-required='true' ng-model="info.body" 
+            style="background-color: #efefef;color: black;"></textarea>
+          </label>
+
+          <div style="float:right;margin-right:10px;">
+            <input type="submit" value="Email" style="width:75px;height:30px;"/>
+          </div>
+
+        <ion-item>
+      </form>
+    </div>
+  </ion-content>
+</ion-popover-view>
+
+

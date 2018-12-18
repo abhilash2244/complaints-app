@@ -1,0 +1,73 @@
+
+<ion-header-bar class="bar-positive formdetails-header-bar" ng-init="getNotifications()">
+    <!-- <h1 class="title tabs-title-lable"> Notifications</h1> -->
+    <h1 class="title tabs-title-lable" style="width:100px !important;"> Notifications</h1>
+<!--     <div class="title tabs-title-lable">
+	    <h5 class="title tabs-title-lable" id="header_Maintitle"> Dynamic Forms</h5>
+	    <h5 class="title tabs-title-lable" id="header_Subtitle"> TATA Power GIS Team</h5>
+    </div>
+ --></ion-header-bar>
+
+ <ion-view hide-nav-bar="true">
+	<ion-content direction="y" scrollbar-y="false" style="top: 42px !important;bottom: 55px;">
+		<ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshNotification()"></ion-refresher>
+<!--  -->
+<ion-list class="custom-content"> 
+   <ion-item style="padding: 5px;" ng-repeat="item in items" ng-click="navigate(item)"  ng-class="item.status ? 'self1' : 'self'">
+    <div class="nofication-bar" ng-if="item.actionType == '1' || item.actionType== '2'">
+     <p>Admin has re-assigned address <b>{{item.displayValues}}</b> for <b>{{item.taskName}}</b> Task</p>
+     <span class="item-note">
+               <i class="icon ion-clock"></i>&nbsp;
+               <small am-time-ago="item.time"></small>
+              </span>
+    </div>
+
+    <div class="nofication-bar" ng-if="item.actionType=='assignjob'">
+     <p>Admin has assigned <b>{{item.taskName}}</b> Task</p>
+     <span class="item-note">
+               <i class="icon ion-clock"></i>&nbsp;
+               <small am-time-ago="item.time"></small>
+              </span>
+    </div>
+     <div class="nofication-bar" ng-if="item.actionType!='assignjob' && item.actionType!='1' && item.actionType!= '2' ">
+     <p>{{item.actionType}}</p>
+     <span class="item-note">
+               <i class="icon ion-clock"></i>&nbsp;
+               <small am-time-ago="item.time"></small>
+              </span>
+    </div>
+
+   </ion-item>
+  </ion-list>
+  <!--  -->
+		
+	<!-- 	<div class="list" ng-if="status">
+			<a class="item custom-item" href="" ng-repeat="item in items"   ng-class="item.status ? 'self1' : 'self'">
+			    <p class="notify_content" ng-if="item.actionType=='reassign'">Admin has re-assigned address <b>{{item.displayValues}}</b> for <b>{{item.taskName}}</b> Task
+			    	<span class="item-note">
+	            		<i class="icon ion-clock"></i>&nbsp;<small am-time-ago="item.time"></small>
+	           		</span>
+                </p>
+
+			    <p class="notify_content" ng-if="item.actionType=='assignjob'">Admin has assigned <b>{{item.taskName}}</b> Task
+				   	<span class="item-note">
+	            		<i class="icon ion-clock"></i>&nbsp;<small am-time-ago="item.time"></small>
+	           		</span>
+           		</p>
+			</a>
+
+		</div> -->
+
+ 		<div ng-if="(status) && (items !== undefined && !items.length)" class="no-results" style="padding-top: 155px;">
+		 <p class="custom-nohistory">No Notifications
+		</p>
+		</div>
+<div ng-if="!status" style="margin-top: 50%;position: fixed;
+    left: 100px;">
+  <center>
+  <img src="img/Offline.png" style="width: 150px;height: 150px;">
+  </center>
+</div>
+	</ion-content>
+</ion-view> 
+

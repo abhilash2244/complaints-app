@@ -1,0 +1,83 @@
+<ion-side-menus enable-menu-with-back-views="true">
+   <ion-pane ion-side-menu-content drag-content="false">
+      <ion-nav-view name="menuContent" ng-class="{expanded: isExpanded}" ></ion-nav-view>
+   </ion-pane>
+
+   <ion-side-menu side="left" width="335">
+      <ion-header-bar class="bar-positive formdetails-header-bar">
+         <!-- <button class="button button-icon button-clear actionbar-text-buttons" style="right: 5%;float: right;position: absolute;top:5px !important;width: 25% !important;color: #2670e0;background-color: #ffffff !important; height: 10px !important;font-size:12px;" ng-model="searchedItem" ng-click="searchType(searchedItem)">{{searchedItem}}
+         </button> -->
+<!--          <input class="autoComplete" id="autocomplete" ng-if="searchedItem == 'Address'" type="text" data-tap-disabled="true" ng-model="search" ng-change='disableTap()' focus-me="shouldBeOpen" google-directive google-directive-fn="getlatlngfromaddress"/>
+ -->
+         <input class="autoComplete" id="autocomplete" style= "width: 95% !important;" type="text" data-tap-disabled="true" ng-model="search" ng-change='disableTap()' focus-me="shouldBeOpen" google-directive google-directive-fn="getlatlngfromaddress"/>
+         <!-- <ui-select ng-if="searchedItem == 'Asset'" ng-model="suggestion.selected"
+            ng-change="gotoSelection($select.selected)"
+            theme="bootstrap"
+            data-tap-disabled="true"
+            ng-click="searchClick()"
+            reset-search-input="false"
+            style="width: 70% !important;z-index: 10000000 !important;
+            color: #a2a0a0 !important;
+            font-size:14px;
+            height: 31px;
+            ">
+            <ui-select-match id="searchMatchId" placeholder="Search for asset" allow-clear="true">{{$select.selected.label}}</ui-select-match>
+            <ui-select-choices repeat="suggestion in suggestions" refresh="searchData($select.search)" refresh-delay="0" style="background-color: #fff;margin-top: 0px;">
+               <span style="font-size:13px;font-weight:bold;top:6px;" text-pre-wrap ng-bind-html="suggestion.label | highlight: $select.search"></span>
+            </ui-select-choices>
+         </ui-select> -->
+         <!--   <button class="button button-icon icon ion-ios-search-strong map-custom-search" ng-if="searchIcon" ng-click="showFilterBar()" style="box-shadow: none;">
+            </button>
+            <button class="button button-icon icon ion-ios-close-outline custom-clear" ng-if="clearIcon" ng-click="hideSearch()" style="box-shadow: none;">
+            </button>
+            -->  
+      </ion-header-bar>
+      <ion-view  style="background-color:#eee;" hide-nav-bar="true">
+         <ion-content direction="y" scrollbar-y="false" style="top: 42px">
+            <div style="border-bottom:2px solid #CACACA;">
+               <leaflet data-tap-disabled="true" defaults="defaults" center="center"
+                  markers="markers"
+                  legend="legend"
+                  layers="layers"
+                  height="{{MapHeight}}" 
+                  width="100%">
+               </leaflet data-tap-disabled="true">
+               <div class="leaflet-custom leaflet-right" style="z-index: 99;position: fixed !important;border: 1px;top: 0px !important;width: auto !important;left: -3px;pointer-events: none; opacity: 0.9;">
+                  <div style="margin-top: 10px !important; margin-right:10px;border-radius: 20px 20px 0px 0px;" class="leaflet-controls-layers leaflet-control" aria-haspopup="true" >
+                     <a class="leaflet-controls-layers-toggle1" ng-click="goTOCurrentLocationONMAp()" title="Current Location"></a>
+                  </div>
+               </div>
+               <!--     <div class="leaflet-custom leaflet-left" style="z-index: 99;position: fixed !important;border: 1px;top: 1px !important;width: auto !important;left: -3px;pointer-events: none;border-radius: 10px; opacity: 0.9;">
+                  <div style="margin-top:{{MapHeight - MapHeight/2}}px;margin-right:-15px;" class="leaflet-controls-layers leaflet-control" aria-haspopup="true" >
+                    <a class="leaflet-controls-layers-toggle-sidemenu" ng-click="openMenu()"  title="Clear Map"></a>
+                  </div>
+                  
+                  </div>
+                  -->
+               <div class="leaflet-custom leaflet-right" style="z-index: 99;position: fixed !important;border: 1px;top: 100px !important;width: auto !important;left: -3px;pointer-events: none;border-radius: 10px; opacity: 0.9;">
+                  <div style="margin-bottom: 5px;border-radius: 30px;" class="leaflet-controls-layers leaflet-control" aria-haspopup="true" ng-if="!isSketchingEnabled">
+                     <a ng-class="{'checked':acordianCheck.value}" ng-click="expandAcordian(acordianCheck)" class="leaflet-controls-layers-toggle6" title="Clear Map"></a>
+                     <a ng-if="acordianCheck.value == true" ng-class="{'checked':homeViewCheck.value}" class="leaflet-controls-layers-toggle2" title="Home" ng-click="gotoHomeView();"></a>
+
+<!--                      <a ng-if="acordianCheck.value == true" class="leaflet-controls-layers-toggle3" ng-class="{'checked':bufferSearchCheck.value}" ng-click="toggleBUfferSearch(bufferSearchCheck)" title="Buffer Search"></a>
+ -->
+                     <a ng-if="acordianCheck.value == true" ng-class="{'checked':bookmarkCheck.value}" class="leaflet-controls-layers-toggle4" ng-click="showBookmarks()" title="Bookmark"></a>
+                     <a ng-if="acordianCheck.value == true" class="leaflet-controls-layers-toggle7"  ng-class="{'checked':measureToolCheck.value}" ng-click="measureTool()" title="Measure Tool"></a>
+                     <a ng-if="acordianCheck.value == true" class="leaflet-controls-layers-toggle8"  ng-class="{'checked':routeBetween2PointsCheck.value}" ng-click="routeBetween2Points()" title="Route Between 2 Points Tool"></a>
+                  </div>
+                  <div ng-if="isSketchingEnabled == true" style="margin-bottom: 5px;border-radius: 30px;" class="leaflet-controls-layers leaflet-control" aria-haspopup="true">
+                     <a ng-if="enablePointGeometryCheck == true" ng-class="{'checked':pointGeometryCheck.value}" ng-click="togglePointGeometryCheck(pointGeometryCheck)" class="leaflet-controls-layers-toggle_point" title="Point Geometry" ></a>
+                     <a ng-if="enableLineGeometryCheck == true" ng-class="{'checked':lineGeometryCheck.value}" ng-click="toggleLineGeometryCheck(lineGeometryCheck)" class="leaflet-controls-layers-toggle_line"  title="Line Geometry"></a>
+                     <a ng-if="enableAreaGeometryCheck == true" ng-class="{'checked':areaGeometryCheck.value}" ng-click="toggleAreaGeometryCheck(areaGeometryCheck)" class="leaflet-controls-layers-toggle_area"   title="Area Geometry"></a>
+                     <a class="leaflet-controls-layers-toggle_annotation"  ng-click="annotationGeometry()" title="Annotation Geometry"></a>
+                     <a ng-if="enableUndoGeometryCheck == true" class="leaflet-controls-layers-toggle_undo"   ng-click="undoGeometry()" title="Undo"></a>
+                     <a class="leaflet-controls-layers-toggle_save"  ng-click="popoverForSaveGeometry()" title="Save Geometry"></a>
+                  </div>
+               </div>
+            </div>
+            <!-- <ion-list class="map-content" ng-controller="taskHistoryCtrl">
+               </ion-list> -->
+         </ion-content>
+      </ion-view>
+   </ion-side-menu>
+</ion-side-menus>

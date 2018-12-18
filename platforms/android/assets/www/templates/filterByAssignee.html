@@ -1,0 +1,35 @@
+<ion-nav-bar class="bar bar-header bar-balanced" style="background-color: #256699;margin-top:306px;height: 40px;">
+    <ion-nav-title class="title-center">
+        <span style="color: #FFFFFF;text-align: center !important;" >Filters</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <ion-label style="float:left;padding-right:15px;padding-top: 5px;
+        font-size:15px;" ng-click="clearFilter();">Clear</ion-label>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <ion-label style="float:right;padding-right:15px;padding-top: 5px;
+        font-size:15px;" ng-click="closeTaskFilter();">Close</ion-label>
+    </ion-nav-buttons>
+    <!-- <ion-nav-buttons side = "right">
+        <ion-label style="float:right; padding-right:15px;padding-top: 10px;
+        font-size:15px;" ng-click="applyFilter();">Done</ion-label>
+    </ion-nav-buttons> -->
+</ion-nav-bar>
+
+<ion-content class="modal-parent" style="margin-top:350px;width:100%;background-color: #FFFFFF;" >
+    <div style="height: auto;overflow:scroll;margin: 10px;">
+       <!--  <p class="filterP">Filter By</p>
+        <div class="row" style="margin-bottom: 5px;">
+            <button class="button button-small filterBtn alignBtn" 
+            ng-class="{fileractive : activeMenu === 'New'}" ng-click="GetSelectedType('new');activeMenu = 'New'">New</button>
+        </div> -->
+
+        <p class="filterP">Sort By</p>
+        <div class="row">
+            <button class="button button-small filterBtn alignBtn" ng-class="{fileractive : taskListFilterAttribute === 'endDate'}" ng-click="sortBy('endDate')">Date
+            </button>
+            <button class="button button-small filterBtn" ng-class="{fileractive : taskListFilterAttribute === 'TaskName'}" ng-click="sortBy('TaskName')">Alphabetical</button>
+        </div>
+    </div>
+</ion-content>
+

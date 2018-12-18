@@ -1,0 +1,77 @@
+ <ion-header-bar class="bar-positive formdetails-header-bar">
+	<div ng-click="backToTasks();" ng-show="sync_header_option">
+		<img src="img/back.png" class="header-back">
+	</div>
+    <span class="taskClear" ng-if="status" ng-hide="sync_header_option" ng-click="clearSelection();">Clear
+	</span>
+	<h1 class="title tabs-title-lable" id="Header_Title"> {{taskname}}</h1>
+
+    <div class="taskSync">
+        <img src="img/sync.png" class="switchtolist" ng-click="checkRecord()" ng-show="sync_header_option" ng-if="(status && syncIconForms.length!==0)">
+    </div>
+    <p class="taskDone" ng-click="syncAllFormsOnline(selection,taskIdOfForms)" ng-if="(selection.length!==0)" ng-hide="sync_header_option">
+     <small>Sync</small>
+    </p>
+</ion-header-bar>
+	
+<ion-view style="background-color:#eee;" hide-nav-bar="true">
+	<ion-content direction="y" scrollbar-y="false">
+		<ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshTaskForms()">
+		</ion-refresher>
+
+	    <!-- <div class="row">
+	        <input class = "fontAwesome" id="searchId" type="search" ng-model="search" placeholder="&#61442; Search" clear-input="" style="width: 108% !important;">
+	    </div> -->
+
+	    <div class="row">
+	        <input class = "fontAwesome" id="searchId" type="search" ng-model="search" placeholder="&#61442; Search" clear-input="">
+
+	        <img src="img/Filter.png" ng-hide="hide_ellipse" class="selectOptions"  ng-click="filterTaskForms()" id="filter_Btn">
+	    </div>
+
+		<ion-list class="custom-content">
+			<ion-item ng-repeat="item in filtereditems = (TaskForms | filter:search | orderBy:propertyName:reverse)"  class="formscontainer shadow" ng-click="TaskFormsHistoryOffline(item)">
+                <input type="checkbox" ng-if="selectCheckBox" class="custom-selectBox"
+				ng-checked="selection.indexOf(item.FormId)> -1" ng-click="toggleSelection(item.FormId,item)" ng-disabled="!(item.status==1)">
+
+				<div>
+					<div class="ion-image"> 
+						<img src="img/Form.png" class="container-image" ng-show="item.status==0"/>
+						<img src="img/Downloaded_Form.png" class="container-image" ng-show="item.status==2"/>
+						<img src="img/Forms_Sync.png" class="container-image" ng-show="item.status==1"/>
+					</div>
+					<div class="ion-desc">
+						<p>{{item.FormName}}</p>
+						<small>C : {{item.category}}</small>
+					</div>
+				</div>	
+
+					<!-- <p class="form-lable">{{item.FormName}}</p> -->
+					 <ion-option-button class="custom-button-map-on-form" ng-click="openMap(item)" ng-show="status">
+					 	 <b class="slide-text-info">map</b>
+						<!--  <img src="img/Map_View.png" class="switchtolist" > -->
+					</ion-option-button> 
+					<ion-option-button class="custom-button-download" ng-click="downloadFormsOfTask(item)" ng-show="status">
+					<!-- ng-hide="task_download_button" -->
+					 <b class="slide-text-download">Download</b>
+					 </ion-option-button>
+					 <ion-option-button class="custom-button-info" ng-click="formInfo(item)">
+						 <b class="slide-text-info">Info</b>
+					</ion-option-button>
+					
+					 <ion-option-button class="custom-button-navigate" ng-click="navigateToLocationFromPrepop(item.recordId)" ng-show="navigateOption">
+					 <b class="slide-text-download">Navigate</b>
+					</ion-option-button>
+
+ 
+												
+				  </ion-item>
+				</ion-list>
+					<div ng-if="filtereditems !== undefined && !filtereditems.length" class="no-results">
+							  <p class="custom-noforms">No Formsz Available</p>
+							</div>
+					</ion-content>
+	<div class="centerOfScreen" ng-if="isNetworkOn == true">
+    	<!-- <img  ng-click="openMenu(pullOverCheck)" class="pull-over" ng-class="{'checked':pullOverCheck.value}" width="65px"> -->
+	</div>
+</ion-view>

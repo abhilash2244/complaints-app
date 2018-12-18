@@ -1,0 +1,28 @@
+  <ion-nav-bar class="bar bar-header bar-balanced" style="margin-top:0px;height: 40px;">
+     <ion-nav-title style="left: 75px;right: 75px;">
+         <span style="color: #FFFFFF;" class="ion-1x" >Find Route</span>
+     </ion-nav-title>
+     <ion-nav-buttons side = "right">
+           <span style="color: #FFFFFF; margin: auto; margin-right:5px;font-size:17px;" ng-click="routeSearchDone()">Close</span>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+    <ion-content class="modal-parent" style="margin-top:5px;width:100%;background-color: #FFFFFF;" >
+        <div class="list" style="padding-left: 3%;padding-right: 3%;top:35px">
+             <ion-item>
+              <ion-label>Source</ion-label>
+              <input type="text" ng-model="source" placeholder="Click on map to set source" style="padding-left: 15px; width: 90%;border-bottom: 1px solid;border-color: #ccc;" ng-disabled="true"/>
+             
+            </ion-item>
+             <ion-item>
+              <ion-label>Destination</ion-label>
+              <input type="text" ng-model="destination" placeholder="Click on map to set destination" style="padding-left: 15px; width: 90%;border-bottom: 1px solid;border-color: #ccc;" ng-disabled="true"/>
+              
+            </ion-item>
+        </div>
+     
+        <div class="loginbt-padding" style="padding-top: 32px;w;width: 146px;w;width:;margin:  auto;">
+          <input type="submit" value="Go" ng-click="showRoute(source,destination)"/>
+       </div>
+
+</ion-content>

@@ -1,0 +1,42 @@
+ <ion-header-bar class="bar-positive formdetails-header-bar" ng-init="getFormsMethod()">
+      <h1 class="title tabs-title-lable" style="width:70px;"> Formsz</h1>
+ <div class="bar bar-header item-input-inset search-actionbar"  ng-show="searchBarShow" class='item-animate'>
+	<div style="width:12%;" ng-click="hideSearchbar();">
+	<img src="img/backarrow.png"  class="search-header-back" >
+	</div>
+    <input type="text" placeholder=" Search" ng-model="search.FormName"  class="search-in-header search-input" />
+ </div>
+ <div ng-show="searchIcon" ng-click="showSearchBar();" class="button-right">
+  <button class="button button-icon icon ion-ios-search-strong "  style="box-shadow: none;top:0px"></button>
+ </div>
+ </ion-header-bar>
+	
+<ion-view  style="background-color:#eee;top: -50px;" hide-nav-bar="true">
+  
+				<ion-content direction="y" scrollbar-y="false">
+				<ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()">
+				</ion-refresher>
+				<ion-list class="custom-content">
+				
+				   <ion-item ng-repeat="item in filtereditems = (items | filter:search)" ng-click="getOfflineRecords(item)" class="formscontainer shadow" ng-init="checkDownloadedForm($index,item)">
+				    <img src="img/Form_record.png" class="container-image" ng-show="arrVals.indexOf(item.id)==-1"/>
+					<img src="img/forms_downloaded.png" class="container-image" ng-show="arrVals.indexOf(item.id)!=-1"/>
+					
+
+					<p class="form-lable">{{item.FormName}}</p>
+					
+							<ion-option-button class="custom-button-download" ng-click="downloadForm(item)" ng-hide="hide_download">
+							 <b class="slide-text-download">Download</b>
+							 </ion-option-button> 
+														
+						 <ion-option-button class="custom-button-info" ng-click="showRecordPopup(item)">
+						 <b class="slide-text-info">Info</b>
+						 </ion-option-button>  
+				  </ion-item>
+				</ion-list>
+					<div ng-if="filtereditems !== undefined && !filtereditems.length" class="no-results">
+							  <!-- <p class="custom-noforms">No Formsz Available</p> -->
+			  			 <center class="custom-noforms">No Formsz Available</center>
+							</div>
+					</ion-content>
+</ion-view>

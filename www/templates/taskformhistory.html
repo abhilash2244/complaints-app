@@ -1,0 +1,97 @@
+
+<ion-header-bar class="bar-positive formdetails-header-bar" ng-init="Tformhistory();">
+	<div class="custom_header_back" ng-click="backToTaskForms();">
+		<img src="img/back.png" class="header-back" ng-show="task_action_header">
+	</div>
+	<div class="custom_header_cancel" ng-click="clearSelection();"  ng-hide="task_action_header">
+		<img src="img/cancel.png" class="header-cancel" style="margin-left: -30px;">
+	</div>
+	<h1 class="title tabs-title-lable" id="Header_Title" ng-show="task_action_header">{{formname}}</h1>
+	<!-- <h1 class="title tabs-title-lable" ng-hide="task_action_header" style="left: 40px;">{{formname}}</h1> -->
+
+	<div class="buttons actionbar_button_position">
+	    <img src="img/ellipse.png"  class="selectOptions" ng-click="openPopover();" ng-show="header_sync_hide">
+		<!-- <img src="img/header_delete.png" ng-hide="header_delete_hide" class="header_delete" ng-click="deleteAllRecords(selection);" >  -->
+		<img src="img/Savedoubletic.png" ng-hide="header_sync_hide" class="heder_sync" ng-click="syncAllOfflineForm(selection);" > 
+    </div>
+</ion-header-bar>
+	
+<ion-view  style="background-color:#eee;" hide-nav-bar="true">
+	<ion-content style="top: 42px;">
+		<ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshOfflineRecords()"></ion-refresher>
+				<!-- @Developer : Phani Kumar narina -->
+				<!-- Filter Task History Data and filter records by  type -->
+				<div class="row">
+			        <input class="fontAwesome" id="searchId" type="search" ng-model="search" placeholder="&#61442; Search" 
+			        clear-input="">
+
+			        <img src="img/Filter.png" class="selectOptions"  ng-click="filterTaskRecord()" id="filter_Btn">
+
+			    </div>
+<!-- For saved records -->
+				<ion-list class="custom-content" scroll="false" can-swipe="!selectCheckBox && !selectAllCheckBox">
+					<ion-item ng-repeat="item in offlineTaskformhistory | filter:search | recFilter : statusType | orderBy:propertyName:reverse" class="formscontainer shadow" ng-click="editTaskForm(item)">
+
+						<input type="checkbox" ng-if="selectCheckBox" class="custom-selectBox"
+						ng-checked="selection.indexOf(item.recordId) > -1" ng-click="toggleSelection(item.recordId);$event.stopPropagation();" />
+						
+						<!--<input type="checkbox" ng-if="selectAllCheckBox" ng-model="selectedAll" class="custom-selectBox"/> -->
+						
+						 <img src="img/Record_save.png" class="container-image"/>
+						<p class="form-lable">{{item.displayValues}}</p>
+						<ion-option-button class="custom-button-delete" ng-click="deleteRecord(item)" ng-hide="item.prepopRecId!=''">
+						 <b class="slide-text-download">Delete</b>
+						</ion-option-button> 
+						
+						<ion-option-button class="custom-button-sync"  ng-click="syncOfflineForm(item);" ng-show="status">
+					 <b class="slide-text-download">Submit</b>	
+					 </ion-option-button>   
+									
+					</ion-item> 
+
+				</ion-list>
+<!-- For prepop records -->
+				<ion-list class="custom-content" >
+				
+				   <ion-item ng-repeat="item in prepopRecords | filter:search | recFilter : statusType | orderBy:propertyName:reverse" class="formscontainer shadow" ng-click="getPrePoprecord(item)">
+				   	
+				  <img src="img/Task_record.png" class="container-image"/>
+					<p class="form-lable">{{item.recordName}}
+					</p>
+					<ion-option-button class="custom-button-navigate" ng-click="navigateToLocationFromPrepop(item.recordId)" ng-show="(status || toggleStatus)">
+				      <b class="slide-text-download">Navigate</b>
+				    </ion-option-button>
+
+				  </ion-item>
+				</ion-list>
+<!-- For Reassign records  -->
+				<ion-list class="custom-content" >
+				
+				   <ion-item ng-repeat="item in reassignRecords | filter:search | recFilter : statusType | orderBy:propertyName:reverse" class="shadow" ng-click="getPrePoprecord(item)" ng-class="item.notifyStatus ? 'formscontainer' : 'formscontainer1 custom-margin'">
+				   	
+				   <img src="img/Record_sync.png" class="container-image"/>
+					<p class="form-lable">{{item.recordName}}
+					</p>
+					<ion-option-button class="custom-button-info" ng-click="reassignComments(item)">
+					<b class="slide-text-info">Info</b>
+			    </ion-option-button>
+				  </ion-item>
+				</ion-list>
+
+			<!-- <div ng-if="(offlineTaskformhistory !== undefined && !offlineTaskformhistory.length) && (!prepopRecords.length)" class="no-results" style="padding-top: 155px;" >
+					  <p class="custom-nohistory">No records yet! <br>
+					  <h3 class="custom-historytext"> Tap on <b style="color:Red">+</b> to create a record</h3></p>
+			</div> -->
+			<div ng-if="(prepopRecords !== undefined && prepopRecords.length==0) && (offlineTaskformhistory !==undefined && offlineTaskformhistory.length==0) && (reassignRecords !==undefined && reassignRecords.length==0) " class="no-results" style="padding-top: 155px;">
+				<p class="custom-nohistory">No Addresses available <br>
+			</div>
+			</ion-content>
+			<div class="fixed-outside" ng-show="addrecordicon">
+            <img src="img/Fab.png" class="button button-clear add-record " ng-click="getTaskFormDetails()">
+            
+            </div>
+	<div class="centerOfScreen" ng-if="isNetworkOn == true">
+    	<!-- <img  ng-click="openMenu(pullOverCheck)" class="pull-over" ng-class="{'checked':pullOverCheck.value}" width="65px"> -->
+	</div>
+
+</ion-view> 

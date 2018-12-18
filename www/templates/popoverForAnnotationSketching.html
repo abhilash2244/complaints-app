@@ -1,0 +1,14 @@
+<ion-popover-view style="top: 40%;left: 40%;width: 300px;height: 150px;border-radius: 15px; ">
+    <ion-content style="margin-top: 10px;">
+      <h3 style="margin-left: 20px;color: #888585;width:100%;font-size:15px;margin-top: 5px;height: 10px;">Add notes</h3>
+      <label class="item item-input">
+        <input type="text" style="background-color: #efefef;padding-left: 10px;border-radius: 10px;margin-right: 5px;height: 40px;" ng-model="annotationName" placeholder="Write notes for sketching">
+      </label>
+      <div style="float:right;margin-right:10px;">
+            <input type="submit" value="CANCEL" ng-click="closeModalForAnnotationSketching()" style="width:75px;height:30px;background-color:#dfe0db !important;color:#8a8686 !important"/>
+            <input type="submit" value="OK" ng-click="setAnnotation(annotationName)" style="width:75px;height:30px;"/>
+      </div>
+    </ion-content>
+   </ion-popover-view>
+
+

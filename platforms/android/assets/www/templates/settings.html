@@ -1,0 +1,31 @@
+<ion-header-bar class="bar-positive formdetails-header-bar" ng-controller="settingsCtrl">
+  <h1 class="title tabs-title-lable" style="width:100px !important;"> Settings</h1>
+  <div class="title tabs-title-lable">
+    <h5 class="title tabs-title-lable" id="header_Maintitle"> Dynamic Forms</h5>
+    <h5 class="title tabs-title-lable" id="header_Subtitle"> GIS - TATAPOWER</h5>
+  </div>
+</ion-header-bar>
+
+<ion-view  style="background-color:#eee;" hide-nav-bar="true">
+  <ion-content direction="y" scrollbar-y="false" class="setting-background">
+    <ion-list>
+      <ion-toggle  class="settings-list" ng-disabled="disableState" ng-model="pushNotification.checked" ng-change="pushNotificationChange()">
+        Network</ion-toggle>
+
+      <ion-item class="settings-list" ng-click="changePwd()">
+        <span class="settings-list-item">Change Password</span>
+      </ion-item>
+
+	    <ion-item class="settings-list" ng-click="aboutUs()">
+        <span class="settings-list-item">About us</span>
+      </ion-item>
+
+	    <ion-item class="settings-list" ng-click="logout()">
+        <span class="settings-list-item">Logout</span>
+      </ion-item>
+    </ion-list>
+    <div class='row' style="padding: 100px;">
+      <p> Username: {{user}}</p>
+    </div>
+  </ion-content>
+</ion-view>

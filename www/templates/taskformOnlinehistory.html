@@ -1,0 +1,39 @@
+<ion-header-bar class="bar-positive formdetails-header-bar">
+	<div class="custom_header_back" ng-click="backToOfflineTaskForms();">
+		<img src="img/back.png" class="header-back">
+	</div>
+	<h1 class="title tabs-title-lable" id="Header_Title">History</h1>
+</ion-header-bar>
+	
+<ion-view  style="background-color:#eee;" hide-nav-bar="true">
+	<ion-content direction="y" scrollbar-y="false">
+		<div class="row">
+	        <input class = "fontAwesome" id="searchId" type="search" ng-model="search" placeholder="&#61442; Search" clear-input="">
+
+	        <img src="img/Filter.png" ng-hide="hide_ellipse" class="selectOptions"  ng-click="sortHistoryList()" id="filter_Btn">
+	    </div>
+
+		<ion-list class="custom-content">
+			<ion-item ng-repeat="item in filtereditems = (taskformOnlinehistoryObjects | filter:search | orderBy:keyName:reverse)" class="formscontainer shadow" ng-click="ViewTaskFormRecord(item)">
+		    	<!-- <img src="img/Task_record.png" class="container-image" />
+		    	<p class="form-lable" ng-bind-html="item.FormValues"></p>
+		    	<p class="form-lable">{{item.createdTime}}</p> -->
+			    <div>
+					<div class="ion-image"> 
+						<img src="img/Task_record.png" class="container-image"/>
+					</div>
+					<div class="ion-desc">
+						<p >{{item.FormValues}}</p>
+						<small>Date : {{item.createdTime | date:'dd-MMM-yyyy'}}</small>
+					</div>
+				</div>
+				<ion-option-button class="custom-button-sync" ng-click="email(item);">
+			     	<b class="slide-text-download">Email</b> 
+			    </ion-option-button> 
+			</ion-item>
+		</ion-list>
+		<div ng-if="taskformOnlinehistoryObjects !== undefined && !taskformOnlinehistoryObjects.length" class="no-results">
+			<center class="custom-noforms">No History Found</center>
+		</div>
+	</ion-content>
+</ion-view> 

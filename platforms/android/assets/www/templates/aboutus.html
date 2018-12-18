@@ -1,0 +1,29 @@
+<ion-header-bar class="bar-positive formdetails-header-bar">
+    <div class="custom_header_back" ng-click="backToSettings();"><img src="img/back.png" class="header-back"></div>
+    <h1 class="title tabs-title-lable"  id="Header_Title">About Us</h1>
+</ion-header-bar>
+<ion-view style="background-color:#FFF;top: -50px;" hide-nav-bar="true">
+    <ion-content direction="y" scrollbar-y="false" class="setting-background">
+        <ion-list style="margin: 24px;">
+            <div class="row">
+                <div class="col-20"></div>
+                <div class="col-50">
+                    <center>
+                        <img src="img/logo.png" class="logo_header_aboutus" style="margin-left: 15px;">
+                    </center>
+                </div>
+                <div class="col-20">
+                    <span class="aboutus_version">V {{version}}</span>
+                </div>
+            </div>
+            <div>
+                <p class="aboutus_text">
+                    <b style="font-weight: bold; color: black;">FORMSZ</b>
+                    is a Go Digital Platform for Business to transform data collection process from paper into Web and Mobile. It helps to design, deploy, and manage interactive forms-driven business processes and automate paper-based activities.</p>
+            </div>
+            <div style="text-align: center; margin-top: 50px;">
+                <a class="aboutus_link" ng-click="goToSite();">www.formsz.com</a>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>

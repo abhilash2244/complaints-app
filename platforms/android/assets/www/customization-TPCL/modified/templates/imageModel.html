@@ -1,0 +1,22 @@
+    <ion-content class="modal-parent" style="outline: none !important;
+    border-color: #719ECE;
+    box-shadow: 0 0 10px #719ECE;margin-top: 10%;
+    margin-bottom: 10%;
+    width: 100%;
+    background-color: #eee;
+   background-color: #FFFFFF;" >
+
+     <ion-refresher on-refresh="closeImage()" "spinner='none'"></ion-refresher>
+
+         <ion-scroll id="mapImage"
+                zooming="true"
+                direction="xy"
+                delegate-handle="zoom-pane"
+                class="zoom-pane"
+                min-zoom="1"
+                max-zoom="15"
+                overflow-scroll="false" on-swipe-down="closeImage()">
+            <img ng-src="{{imgurl}}">
+    </ion-scroll>
+    </ion-content>
+

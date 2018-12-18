@@ -1,0 +1,25 @@
+<ion-popover-view style="top: 20%;left: 35%;width: 90%;height: 80%; ">
+
+	<ion-header-bar class="bar-positive formdetails-header-bar bar bar-header disable-user-behavior has-tabs-top">
+    <h3 class="header_formname ng-binding" style="width:100%;">Instructions</h3>
+		<div class="custom_header_back" ng-click="closeModal();"><img src="img/cancel.png" class="header-back"></div>
+		
+	</ion-header-bar>
+
+    <ion-content>
+      <ion-list ng-if="workInstruction != undefined">
+            <ion-item class="animate-repeat" ng-repeat="data in workInstruction">
+                  <div class="item item-text-wrap" >{{data}}</div>
+              </ion-item>
+      </ion-list>
+      <ion-list ng-if="workInstruction == undefined">
+            <ion-item class="animate-repeat">
+                  <div class="item item-text-wrap" >No Instructions available</div>
+              </ion-item>
+      </ion-list>
+
+    </ion-content>
+    
+   </ion-popover-view>
+
+

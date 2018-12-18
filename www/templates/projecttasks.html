@@ -1,0 +1,17 @@
+<ion-header-bar class="bar-positive formdetails-header-bar" ng-init="methodCheck()">
+      <h1 class="title tabs-title-lable" style="width:150px;"> Project Tasks</h1>
+ 
+  </ion-header-bar>
+
+<ion-view  style="background-color:#eee;top: -50px;" hide-nav-bar="true">
+    		
+				<ion-content direction="y" scrollbar-y="false">
+				<ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()">
+				</ion-refresher>
+				
+					<div>
+							 <!--  <p class="custom-noforms" style="margin-top: 56px;">No Tasks Available</p> -->
+							 <center class="custom-noforms">No Project Tasks Available</center>
+					</div>
+			</ion-content>
+</ion-view>

@@ -1,0 +1,93 @@
+<ion-header-bar class="bar-assertive-900 bar bar-header hdr">
+    <div class="custom_header_back" ng-click="backToPrepopRecords();">
+      <img src="img/back.png" class="header-back">
+    </div>
+    <!-- >>>> Phani Kumar Narina
+    >>>>> Title Header -->
+    <h1 class="title tabs-title-lable" id="Header_Title_forms">{{formname}}</h1>
+    <!-- >>>>> End -->
+    <!-- //hide this div if view is history -->
+    <!-- <div class="buttons actionbar_button_position" ng-hide="isHistoryShowing">
+        <button class="button button-icon button-clear actionbar-text-buttons" style="width: 60px !important"  ng-click="saveProjectformProcess(fieldsform.$valid,'save')">save
+        </button>
+        <button class="button button-icon button-clear actionbar-text-buttons"  ng-if="isNetworkOn" ng-click="submitProjectTaskForm(fieldsform.$valid,'submit')" style="margin-right:25px;">submit
+        </button>
+        <img src="img/ellipse.png" class="selectOptions"  ng-click="openellipsePopoverInForms();" ng-hide="hideicon">
+    </div> -->
+
+    <div class="buttons actionbar_button_position" ng-hide="isHistoryShowing">
+<!--       <img src="img/Savetic.png"  class="heder_sync"  ng-click="saveProjectformProcess(fieldsform.$valid,'save')">
+      
+      <img src="img/Savedoubletic.png" ng-click="submitProjectTaskForm(fieldsform.$valid,'submit')" class="heder_sync" ng-if="isNetworkOn">
+ -->
+      <button class = "button button-small" style="width: 60px;margin-right: 5px;height: 10px;" ng-click="saveProjectformProcess(fieldsform.$valid,'save')">Save</button>
+
+      <button class = "button button-small" style="width: 60px;height: 10px;margin-right: 10px;" ng-click="submitProjectTaskForm(fieldsform.$valid,'submit')" ng-if="isNetworkOn">Submit</button>
+
+      <img src="img/ellipse.png" ng-click="openellipsePopoverInForms();" ng-hide="hideicon" class="heder_sync">
+    </div>
+    <!--   <img src="img/ellipse.png" class="selectOptions" ng-hide="formEllipse" ng-click="openellipsePopover();">  -->
+</ion-header-bar>
+
+<ion-view style="background-color:#eee;top: -50px;" hide-nav-bar="true">
+   <form name="fieldsform" >
+   
+    <ion-content style="background-color:#eee;">
+   
+       <div class="container" ng-if="isNetworkOn">
+        <div class="left"></div>
+        <div class="center"><a ng-class="{'checked':voiceSearchToggle.value}" ng-click="startSpeech(voiceSearchToggle)" class="voice-search-toggle"></a></div>
+        <div class="right" ng-click="sketchings()">
+                <div style="background-color: #7A9A01;border-radius: 5px;height: 30px;width: 105px;padding-top: 5px;">
+                  <img src="img/Sketch_white.png" style="height: 20px;float:  left;"><lable style="font-size: 17px;">Sketching</lable></div>
+        </div>
+      </div>
+
+      <ion-list scroll="false">
+        <div style="margin-bottom:">
+          <ion-item>
+            <label class="item item-input item-stacked-label content-text">
+              <div class="input-label">Assigned By : <span>{{assigneeToShowInForms}}</span></div>
+            </label> 
+          </ion-item>
+        </div>
+         <div ng-repeat="field in fields">
+           <!--  <div data-ng-include="'templates/groupWidgetsPreview.html'" ng-if="!prepopDataShow">
+            </div> -->
+            <!-- <div data-ng-include="'templates/prepopDataShow.html'" ng-if="prepopDataShow">
+            </div> -->
+           
+            <!-- 
+              Developer: Santhosh Kumar Gunti
+              Date: 16/04/2018
+            -->
+            <div  data-ng-include="'customization-TPCL/modified/templates/projectFormFields.html'">
+            </div>
+
+           
+
+
+            <!-- <div data-ng-include="'templates/groupWidgetsPreview.html'" ng-if="taskType == true">
+            </div> -->
+         </div>
+        
+
+      </ion-list>
+    
+   </ion-content>
+   <div class="mapimg-brd" ng-show="mapAllowed == true && isNetworkOn == true">
+        <img src="img/Map.png" class="switchtomapview" ng-click="openMap()">
+    </div>
+
+<!--     <div style="width: 100%;bottom: 0px;z-index: 100000;height: 6%;position: absolute;background-color: #dad7d7;padding-top: 5px;text-align: center;">
+      <p><b>Assigned by : {{assigneeToShowInForms}}</b></p>
+    </div>
+ -->   	 
+
+<!--      <input type="text" class="form-field-margin" ng-model="assigneeToShowInForms" ng-readonly="true"> 
+ -->
+   </form>   
+   <div class="centerOfScreen" ng-if="isNetworkOn == true" data-tap-disabled="true">
+     <!--  <img ng-click="openMenu(pullOverCheck)" class="pull-over" width="65px" ng-class="{'checked':pullOverCheck.value}" data-tap-disabled="true"> -->
+  </div>
+</ion-view>

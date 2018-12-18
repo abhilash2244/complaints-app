@@ -1,0 +1,88 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-plugin-x-toast": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-plugin-keyboard": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "phonegap-plugin-barcodescanner": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "com-badrit-macaddress": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "com.darktalker.cordova.screenshot": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova.plugins.diagnostic": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-plugin-tts": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "phonegap-plugin-speech-recognition": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "com.telerik.plugins.nativepagetransitions": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-plugin-media-capture": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-plugin-fcm": {
+      "PACKAGE_NAME": "com.mm.formsz.ue"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.mm.formsz.tpcl"
+    },
+    "cordova-android-support-gradle-release": {
+      "ANDROID_SUPPORT_VERSION": "27.+",
+      "PACKAGE_NAME": "com.mm.formsz.tpcl"
+    },
+    "SyncUtility": {
+      "PACKAGE_NAME": "com.mm.formsz.tpcl"
+    }
+  },
+  "dependent_plugins": {}
+}

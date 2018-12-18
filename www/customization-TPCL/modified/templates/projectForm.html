@@ -1,0 +1,181 @@
+<ion-header-bar class="bar-positive formdetails-header-bar" ng-init="Tformhistory()">
+	<div class="custom_header_back" ng-click="backToPrePoRecords();" ng-if="isHistoryShowing == true">
+		<img src="img/back.png" class="header-back" >
+	</div>
+
+	<div class="custom_header_back" ng-click="backToTaskForms();" ng-if="isHistoryShowing == false && !enableCheckboxInProj">
+		<img src="img/back.png" class="header-back">
+	</div>
+	<div class="custom_header_back" ng-click="clearSelection();"  ng-if="enableCheckboxInProj">
+		<img src="img/cancel.png" class="header-back">
+	</div>
+	<h1 class="title tabs-title-lable" id="Header_Title" ng-show="task_action_header">{{formname}}</h1>
+
+	<div class="buttons actionbar_button_position" ng-if="isHistoryShowing == false && isNetworkOn">
+	    
+	    <img src="img/ellipse.png"  class="heder_sync"  ng-click="projectOpenPopover();" ng-if="!enableCheckboxInProj">
+      
+      <button class = "button button-small" style="width: 60px;height: 10px;margin-right: 10px;" 
+      ng-if="enableCheckboxInProj" ng-show="header_sync_hide" class="heder_sync" ng-click="syncAllRecordsOnlineProj(syncRecIdsProj);">Submit</button>
+
+
+<!-- 	    <img src="img/Savedoubletic.png" ng-if="enableCheckboxInProj" ng-show="header_sync_hide" class="heder_sync" ng-click="syncAllRecordsOnlineProj(syncRecIdsProj);" > 
+ -->    </div>
+</ion-header-bar>
+<!-- setting height of the formfields by santhosh kumar gunti
+-->
+<ion-view  style="background-color:#eee; " hide-nav-bar="true">
+	<ion-content style="top: 42px;height: 92% !important;">
+		<ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshOfflineRecords()"></ion-refresher>
+
+		<div class="row">
+	        <input class = "fontAwesome" id="searchId" type="search" ng-model="search" placeholder="&#61442; Search" clear-input="">
+
+	        <img src="img/Filter.png" class="selectOptions" ng-click="filterTaskForm()" id="filter_Btn">
+	    </div>
+
+	    <!-- Reassigned Tasks -->
+		<ion-list class="custom-content" ng-if="!isHistoryShowing && isReassignShowing">
+		   <ion-item  ng-repeat="item in filtereditems = (reassignRecords | filter:search)" class="formscontainer shadow" ng-click="gotoFormFilling(item,'reassign',$index)">
+		  	<img src="img/Re-assign_Active.png" class="container-image"/>
+		   
+		    <span ng-repeat=" (id,eachValue) in displayValues">
+		    	<!-- <p>{{item.record[eachValue.id]}}</p> -->
+		    	<div ng-repeat="(key,value) in eachValue">
+		    		<p ng-if="key.includes('Date_')">{{item.record[key] | date : "MM-dd-yyyy HH:mm"}}</p>
+		    		<p ng-if="!key.includes('Date_')">{{item.record[key]}}</p>
+		    	</div>
+		    </span>
+<!-- 		    <ion-option-button class="custom-button-navigate" ng-click="navigateToLocationFromPrepop(item.recordId,$event
+)" ng-if="isNetworkOn">
+		      <b class="slide-text-download">Navigate</b>
+		    </ion-option-button>
+ -->		  </ion-item>
+		</ion-list>
+
+		<!-- @phani :Prepop Records -->
+		<ion-list class="custom-content" ng-if="!isHistoryShowing && !isReassignShowing && prepopshow">
+		   <ion-item ng-if="OfflineRecordsList.indexOf(item.record['RUID']) == -1" ng-repeat="item in prepopRecords | filter:search" class="formscontainer shadow" ng-click="gotoFormFilling(item,'prepop',$index)">
+		  	<img src="img/Task_record.png" class="container-image"/>
+		   
+		    <span ng-repeat=" (id,eachValue) in displayValues">
+		    	<!-- <p>{{item.record[eachValue.id]}}</p> -->
+		    	
+		    	<!-- 
+	              Description: Date filer modified to show date and time
+	              Developer: Lokesh
+	              Date: 02/04/2018
+	            -->
+		    	<div ng-repeat="(key,value) in eachValue">
+		    		<p ng-if="key.includes('Date_')">{{item.record[key] | date : "MM-dd-yyyy HH:mm"}}</p>
+		    		<p ng-if="!key.includes('Date_')">{{item.record[key]}}</p>
+		    			
+		    	</div>
+		    </span>
+	    	<!-- 
+              Description: $event added to click event to restrict background click
+              Developer: Santhosh Kumar Gunti
+              Date: 16/04/2018
+            -->
+
+			<ion-option-button class="custom-button-navigate" ng-click="navigateToLocationFromPrepop(item.record['RUID'],$event
+)" ng-if="isNetworkOn">
+		      <b class="slide-text-download">Navigate</b>
+		    </ion-option-button>
+		    
+		  	</ion-item>
+		</ion-list>
+
+		<!-- @phani : saved records listing start --> 
+		<ion-list class="custom-content" ng-if="!isHistoryShowing && !isReassignShowing">
+		   <ion-item ng-repeat="item in savedRecordsWhileOnline | filter:search" class="formscontainer shadow" >
+			  	<input type="checkbox" ng-if="enableCheckboxInProj" class="custom-selectBox"
+				ng-checked="syncRecIdsProj.indexOf(item.uniqueID) >-1" ng-click="getUniqueIdsForSyn(item.uniqueID,item)" />
+
+			  	<img src="img/Record_save.png" class="container-image" ng-click="gotoOpenSavedRecord(item,'saved',$index)"/>
+			    <span ng-repeat=" (id,eachValue) in displayValues" ng-click="gotoOpenSavedRecord(item,'saved',$index)">
+			    	<!-- 
+		              Description: Date filer modified to show date and time
+		              Developer: Lokesh
+		              Date: 02/04/2018
+		            -->
+			    	<div ng-repeat="(key,value) in eachValue">
+			    		<p ng-if="key.includes('Date_')">{{item.record[key] | date : "MM-dd-yyyy HH:mm"}}</p>
+			    		<p ng-if="!key.includes('Date_')">{{item.record[key]}}</p>
+			    			
+			    	</div>
+
+			    </span>
+
+			    <ion-option-button class="custom-button-delete" ng-click="deleteRecord(item,$index)" ng-hide="delete_hide">
+					 <b class="slide-text-download" >Delete</b>
+				</ion-option-button> 
+					
+				<ion-option-button class="custom-button-sync"  ng-click="sumitRecorddirectly(item,$index);" ng-hide="sync_hide" ng-if="isNetworkOn">
+				 	<b class="slide-text-download" >Submit</b>	
+				</ion-option-button> 
+
+		    	<!-- 
+	              Description: $event added to click event to restrict background click
+	              Developer: Santhosh Kumar Gunti
+	              Date: 16/04/2018
+	            -->
+				<ion-option-button class="custom-button-navigate" ng-click="navigateToLocationFromPrepop(item.record['RUID'],$event)" ng-if="isNetworkOn">
+			      <b class="slide-text-download">Navigate</b>
+			    </ion-option-button>
+
+			</ion-item>
+		</ion-list>
+
+		<ion-list class="custom-content"  ng-if="isHistoryShowing == true && showSaved">
+		   <ion-item  ng-repeat="item in historyRecords | filter:search" class="formscontainer shadow" ng-click="gotoFormFillingHistory(item,'prepop',$index)">
+		  		<img src="img/Form.png" class="container-image"/>
+			    <span ng-repeat=" (id,eachValue) in displayValues">
+			    	<!-- <p>{{item.record[eachValue.id]}}</p> -->
+			    	<!-- 
+		              Description: Date filer modified to show date and time
+		              Developer: Lokesh
+		              Date: 02/04/2018
+		            -->
+			    	<div ng-repeat="(key,value) in eachValue">
+			    		<p ng-if="key.includes('Date_')">{{item.record[key] | date : "MM-dd-yyyy HH:mm"}}</p>
+			    		<p ng-if="!key.includes('Date_')">{{item.record[key]}}</p>
+			    	</div>
+			    </span>
+				<ion-option-button class="custom-button-sync" ng-click="email(item);">
+     				<b class="slide-text-download">Email</b> 
+   				</ion-option-button>
+		  </ion-item>
+		</ion-list>
+
+
+		<div ng-if="prepopRecords.length == 0 && savedRecordsWhileOnline.length == 0 && !isHistoryShowing && !isReassignShowing">
+			<div  class="no-results" style="padding-top: 155px;" >
+			   	<!-- 
+	              Description: Hide + button if form alredy submitted(for the form frequency).
+	              Developer: Lokesh
+	            -->
+	         <p>   
+			  	<h3 class="custom-historytext" ng-if="formSubmittedStatus == 0"> Tap on <b style="color:Red">+</b> to create a record</h3>
+			  </p>
+			</div>
+		</div>
+
+		<div ng-if="historyRecords.length == 0 || reassignRecords.length == 0">
+			<div  class="no-results" style="padding-top: 155px;" >
+			  <p class="custom-nohistory">No records yet! <br>
+			  </p>
+			</div>
+		</div>
+
+	</ion-content>
+	<div class="fixed-outside" ng-if="formFrequency != 'Allweather'">
+        <img src="img/Fab.png" class="button button-clear add-record " ng-click="gotoEmptyForrmfilling()" ng-if="!isHistoryShowing && !isReassignShowing && savedRecordsWhileOnline.length == 0 && prepopRecords.length == 0 && formSubmittedStatus == 0">
+    </div>
+    <div class="fixed-outside" ng-if="formFrequency == 'Allweather'">
+        <img src="img/Fab.png" class="button button-clear add-record " ng-click="gotoEmptyForrmfilling()" ng-if="!isHistoryShowing && !isReassignShowing">
+    </div>
+    <div class="centerOfScreen" ng-if="isNetworkOn == true && !isHistoryShowing && !isReassignShowing" data-tap-disabled="true">
+    	<!-- <img ng-click="openMenu(pullOverCheck)" class="pull-over" width="65px" ng-class="{'checked':pullOverCheck.value}" data-tap-disabled="true"> -->
+	</div>
+</ion-view> 
